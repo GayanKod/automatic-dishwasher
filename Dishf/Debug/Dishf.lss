@@ -1,0 +1,2737 @@
+
+Dishf.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000faa  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000010a  00800060  00000faa  0000103e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  0080016a  0080016a  00001148  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00001148  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001178  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000160  00000000  00000000  000011b4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00003452  00000000  00000000  00001314  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000b84  00000000  00000000  00004766  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000145f  00000000  00000000  000052ea  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000004f8  00000000  00000000  0000674c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000596  00000000  00000000  00006c44  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00002939  00000000  00000000  000071da  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000120  00000000  00000000  00009b13  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 e0 06 	jmp	0xdc0	; 0xdc0 <__vector_7>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	11 e0       	ldi	r17, 0x01	; 1
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea ea       	ldi	r30, 0xAA	; 170
+  68:	ff e0       	ldi	r31, 0x0F	; 15
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	21 e0       	ldi	r18, 0x01	; 1
+  78:	aa e6       	ldi	r26, 0x6A	; 106
+  7a:	b1 e0       	ldi	r27, 0x01	; 1
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ae 36       	cpi	r26, 0x6E	; 110
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 b2 06 	call	0xd64	; 0xd64 <main>
+  8a:	0c 94 d3 07 	jmp	0xfa6	; 0xfa6 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <ds18b20crc8>:
+	//Poor DS18B20 feels better then...
+	*port |= mask;
+	*direction |= mask;
+
+	return DS18B20_ERROR_OK;
+}
+  92:	dc 01       	movw	r26, r24
+  94:	80 e0       	ldi	r24, 0x00	; 0
+  96:	40 e0       	ldi	r20, 0x00	; 0
+  98:	12 c0       	rjmp	.+36     	; 0xbe <ds18b20crc8+0x2c>
+  9a:	fd 01       	movw	r30, r26
+  9c:	e4 0f       	add	r30, r20
+  9e:	f1 1d       	adc	r31, r1
+  a0:	20 81       	ld	r18, Z
+  a2:	90 e0       	ldi	r25, 0x00	; 0
+  a4:	09 c0       	rjmp	.+18     	; 0xb8 <ds18b20crc8+0x26>
+  a6:	38 2f       	mov	r19, r24
+  a8:	32 27       	eor	r19, r18
+  aa:	86 95       	lsr	r24
+  ac:	30 ff       	sbrs	r19, 0
+  ae:	02 c0       	rjmp	.+4      	; 0xb4 <ds18b20crc8+0x22>
+  b0:	3c e8       	ldi	r19, 0x8C	; 140
+  b2:	83 27       	eor	r24, r19
+  b4:	26 95       	lsr	r18
+  b6:	9f 5f       	subi	r25, 0xFF	; 255
+  b8:	98 30       	cpi	r25, 0x08	; 8
+  ba:	a8 f3       	brcs	.-22     	; 0xa6 <ds18b20crc8+0x14>
+  bc:	4f 5f       	subi	r20, 0xFF	; 255
+  be:	46 17       	cp	r20, r22
+  c0:	60 f3       	brcs	.-40     	; 0x9a <ds18b20crc8+0x8>
+  c2:	08 95       	ret
+
+000000c4 <ds18b20match>:
+  c4:	8f 92       	push	r8
+  c6:	9f 92       	push	r9
+  c8:	af 92       	push	r10
+  ca:	bf 92       	push	r11
+  cc:	cf 92       	push	r12
+  ce:	df 92       	push	r13
+  d0:	ef 92       	push	r14
+  d2:	ff 92       	push	r15
+  d4:	0f 93       	push	r16
+  d6:	1f 93       	push	r17
+  d8:	cf 93       	push	r28
+  da:	df 93       	push	r29
+  dc:	7c 01       	movw	r14, r24
+  de:	6b 01       	movw	r12, r22
+  e0:	5a 01       	movw	r10, r20
+  e2:	d2 2f       	mov	r29, r18
+  e4:	48 01       	movw	r8, r16
+  e6:	01 2b       	or	r16, r17
+  e8:	21 f4       	brne	.+8      	; 0xf2 <ds18b20match+0x2e>
+  ea:	0c ec       	ldi	r16, 0xCC	; 204
+  ec:	0e 94 5c 07 	call	0xeb8	; 0xeb8 <onewireWrite>
+  f0:	12 c0       	rjmp	.+36     	; 0x116 <ds18b20match+0x52>
+  f2:	05 e5       	ldi	r16, 0x55	; 85
+  f4:	0e 94 5c 07 	call	0xeb8	; 0xeb8 <onewireWrite>
+  f8:	c0 e0       	ldi	r28, 0x00	; 0
+  fa:	0b c0       	rjmp	.+22     	; 0x112 <ds18b20match+0x4e>
+  fc:	f4 01       	movw	r30, r8
+  fe:	ec 0f       	add	r30, r28
+ 100:	f1 1d       	adc	r31, r1
+ 102:	00 81       	ld	r16, Z
+ 104:	2d 2f       	mov	r18, r29
+ 106:	a5 01       	movw	r20, r10
+ 108:	b6 01       	movw	r22, r12
+ 10a:	c7 01       	movw	r24, r14
+ 10c:	0e 94 5c 07 	call	0xeb8	; 0xeb8 <onewireWrite>
+ 110:	cf 5f       	subi	r28, 0xFF	; 255
+ 112:	c8 30       	cpi	r28, 0x08	; 8
+ 114:	98 f3       	brcs	.-26     	; 0xfc <ds18b20match+0x38>
+ 116:	df 91       	pop	r29
+ 118:	cf 91       	pop	r28
+ 11a:	1f 91       	pop	r17
+ 11c:	0f 91       	pop	r16
+ 11e:	ff 90       	pop	r15
+ 120:	ef 90       	pop	r14
+ 122:	df 90       	pop	r13
+ 124:	cf 90       	pop	r12
+ 126:	bf 90       	pop	r11
+ 128:	af 90       	pop	r10
+ 12a:	9f 90       	pop	r9
+ 12c:	8f 90       	pop	r8
+ 12e:	08 95       	ret
+
+00000130 <ds18b20convert>:
+ 130:	bf 92       	push	r11
+ 132:	cf 92       	push	r12
+ 134:	df 92       	push	r13
+ 136:	ef 92       	push	r14
+ 138:	ff 92       	push	r15
+ 13a:	0f 93       	push	r16
+ 13c:	1f 93       	push	r17
+ 13e:	cf 93       	push	r28
+ 140:	df 93       	push	r29
+ 142:	ec 01       	movw	r28, r24
+ 144:	7b 01       	movw	r14, r22
+ 146:	6a 01       	movw	r12, r20
+ 148:	b2 2e       	mov	r11, r18
+ 14a:	0e 94 fe 06 	call	0xdfc	; 0xdfc <onewireInit>
+ 14e:	81 30       	cpi	r24, 0x01	; 1
+ 150:	71 f0       	breq	.+28     	; 0x16e <ds18b20convert+0x3e>
+ 152:	2b 2d       	mov	r18, r11
+ 154:	a6 01       	movw	r20, r12
+ 156:	b7 01       	movw	r22, r14
+ 158:	ce 01       	movw	r24, r28
+ 15a:	0e 94 62 00 	call	0xc4	; 0xc4 <ds18b20match>
+ 15e:	04 e4       	ldi	r16, 0x44	; 68
+ 160:	2b 2d       	mov	r18, r11
+ 162:	a6 01       	movw	r20, r12
+ 164:	b7 01       	movw	r22, r14
+ 166:	ce 01       	movw	r24, r28
+ 168:	0e 94 5c 07 	call	0xeb8	; 0xeb8 <onewireWrite>
+ 16c:	80 e0       	ldi	r24, 0x00	; 0
+ 16e:	df 91       	pop	r29
+ 170:	cf 91       	pop	r28
+ 172:	1f 91       	pop	r17
+ 174:	0f 91       	pop	r16
+ 176:	ff 90       	pop	r15
+ 178:	ef 90       	pop	r14
+ 17a:	df 90       	pop	r13
+ 17c:	cf 90       	pop	r12
+ 17e:	bf 90       	pop	r11
+ 180:	08 95       	ret
+
+00000182 <ds18b20rsp>:
+ 182:	8f 92       	push	r8
+ 184:	9f 92       	push	r9
+ 186:	af 92       	push	r10
+ 188:	bf 92       	push	r11
+ 18a:	cf 92       	push	r12
+ 18c:	df 92       	push	r13
+ 18e:	ef 92       	push	r14
+ 190:	ff 92       	push	r15
+ 192:	0f 93       	push	r16
+ 194:	1f 93       	push	r17
+ 196:	cf 93       	push	r28
+ 198:	df 93       	push	r29
+ 19a:	6c 01       	movw	r12, r24
+ 19c:	5b 01       	movw	r10, r22
+ 19e:	4a 01       	movw	r8, r20
+ 1a0:	d2 2f       	mov	r29, r18
+ 1a2:	0e 94 fe 06 	call	0xdfc	; 0xdfc <onewireInit>
+ 1a6:	81 30       	cpi	r24, 0x01	; 1
+ 1a8:	d9 f1       	breq	.+118    	; 0x220 <ds18b20rsp+0x9e>
+ 1aa:	2d 2f       	mov	r18, r29
+ 1ac:	a4 01       	movw	r20, r8
+ 1ae:	b5 01       	movw	r22, r10
+ 1b0:	c6 01       	movw	r24, r12
+ 1b2:	0e 94 62 00 	call	0xc4	; 0xc4 <ds18b20match>
+ 1b6:	0e eb       	ldi	r16, 0xBE	; 190
+ 1b8:	2d 2f       	mov	r18, r29
+ 1ba:	a4 01       	movw	r20, r8
+ 1bc:	b5 01       	movw	r22, r10
+ 1be:	c6 01       	movw	r24, r12
+ 1c0:	0e 94 5c 07 	call	0xeb8	; 0xeb8 <onewireWrite>
+ 1c4:	c0 e0       	ldi	r28, 0x00	; 0
+ 1c6:	0c c0       	rjmp	.+24     	; 0x1e0 <ds18b20rsp+0x5e>
+ 1c8:	87 01       	movw	r16, r14
+ 1ca:	0c 0f       	add	r16, r28
+ 1cc:	11 1d       	adc	r17, r1
+ 1ce:	2d 2f       	mov	r18, r29
+ 1d0:	a4 01       	movw	r20, r8
+ 1d2:	b5 01       	movw	r22, r10
+ 1d4:	c6 01       	movw	r24, r12
+ 1d6:	0e 94 a7 07 	call	0xf4e	; 0xf4e <onewireRead>
+ 1da:	f8 01       	movw	r30, r16
+ 1dc:	80 83       	st	Z, r24
+ 1de:	cf 5f       	subi	r28, 0xFF	; 255
+ 1e0:	c9 30       	cpi	r28, 0x09	; 9
+ 1e2:	90 f3       	brcs	.-28     	; 0x1c8 <ds18b20rsp+0x46>
+ 1e4:	f7 01       	movw	r30, r14
+ 1e6:	70 81       	ld	r23, Z
+ 1e8:	81 81       	ldd	r24, Z+1	; 0x01
+ 1ea:	62 81       	ldd	r22, Z+2	; 0x02
+ 1ec:	53 81       	ldd	r21, Z+3	; 0x03
+ 1ee:	44 81       	ldd	r20, Z+4	; 0x04
+ 1f0:	35 81       	ldd	r19, Z+5	; 0x05
+ 1f2:	26 81       	ldd	r18, Z+6	; 0x06
+ 1f4:	97 81       	ldd	r25, Z+7	; 0x07
+ 1f6:	87 2b       	or	r24, r23
+ 1f8:	86 2b       	or	r24, r22
+ 1fa:	85 2b       	or	r24, r21
+ 1fc:	84 2b       	or	r24, r20
+ 1fe:	83 2b       	or	r24, r19
+ 200:	82 2b       	or	r24, r18
+ 202:	89 2b       	or	r24, r25
+ 204:	51 f0       	breq	.+20     	; 0x21a <ds18b20rsp+0x98>
+ 206:	68 e0       	ldi	r22, 0x08	; 8
+ 208:	c7 01       	movw	r24, r14
+ 20a:	0e 94 49 00 	call	0x92	; 0x92 <ds18b20crc8>
+ 20e:	f7 01       	movw	r30, r14
+ 210:	90 85       	ldd	r25, Z+8	; 0x08
+ 212:	89 17       	cp	r24, r25
+ 214:	21 f0       	breq	.+8      	; 0x21e <ds18b20rsp+0x9c>
+ 216:	82 e0       	ldi	r24, 0x02	; 2
+ 218:	03 c0       	rjmp	.+6      	; 0x220 <ds18b20rsp+0x9e>
+ 21a:	83 e0       	ldi	r24, 0x03	; 3
+ 21c:	01 c0       	rjmp	.+2      	; 0x220 <ds18b20rsp+0x9e>
+ 21e:	80 e0       	ldi	r24, 0x00	; 0
+ 220:	df 91       	pop	r29
+ 222:	cf 91       	pop	r28
+ 224:	1f 91       	pop	r17
+ 226:	0f 91       	pop	r16
+ 228:	ff 90       	pop	r15
+ 22a:	ef 90       	pop	r14
+ 22c:	df 90       	pop	r13
+ 22e:	cf 90       	pop	r12
+ 230:	bf 90       	pop	r11
+ 232:	af 90       	pop	r10
+ 234:	9f 90       	pop	r9
+ 236:	8f 90       	pop	r8
+ 238:	08 95       	ret
+
+0000023a <ds18b20read>:
+
+//! Read temperature
+uint8_t ds18b20read( volatile uint8_t *port, volatile uint8_t *direction, volatile uint8_t *portin, uint8_t mask, uint8_t *rom, int16_t *temperature )
+{
+ 23a:	cf 92       	push	r12
+ 23c:	df 92       	push	r13
+ 23e:	ef 92       	push	r14
+ 240:	ff 92       	push	r15
+ 242:	0f 93       	push	r16
+ 244:	1f 93       	push	r17
+ 246:	cf 93       	push	r28
+ 248:	df 93       	push	r29
+ 24a:	cd b7       	in	r28, 0x3d	; 61
+ 24c:	de b7       	in	r29, 0x3e	; 62
+ 24e:	29 97       	sbiw	r28, 0x09	; 9
+ 250:	0f b6       	in	r0, 0x3f	; 63
+ 252:	f8 94       	cli
+ 254:	de bf       	out	0x3e, r29	; 62
+ 256:	0f be       	out	0x3f, r0	; 63
+ 258:	cd bf       	out	0x3d, r28	; 61
+ 25a:	67 01       	movw	r12, r14
+
+	uint8_t sp[9];
+	uint8_t ec = 0;
+
+	//Communication, pull-up, CRC checks happen here
+	ec = ds18b20rsp( port, direction, portin, mask, rom, sp );
+ 25c:	fe 01       	movw	r30, r28
+ 25e:	31 96       	adiw	r30, 0x01	; 1
+ 260:	7f 01       	movw	r14, r30
+ 262:	0e 94 c1 00 	call	0x182	; 0x182 <ds18b20rsp>
+
+	if ( ec != DS18B20_ERROR_OK )
+ 266:	88 23       	and	r24, r24
+ 268:	21 f0       	breq	.+8      	; 0x272 <ds18b20read+0x38>
+	{
+		*temperature = 0;
+ 26a:	f6 01       	movw	r30, r12
+ 26c:	11 82       	std	Z+1, r1	; 0x01
+ 26e:	10 82       	st	Z, r1
+		return ec;
+ 270:	0b c0       	rjmp	.+22     	; 0x288 <ds18b20read+0x4e>
+	}
+
+	//Get temperature from received data
+	*temperature = (int16_t)( sp[1] << 8 ) + sp[0];
+ 272:	8a 81       	ldd	r24, Y+2	; 0x02
+ 274:	90 e0       	ldi	r25, 0x00	; 0
+ 276:	98 2f       	mov	r25, r24
+ 278:	88 27       	eor	r24, r24
+ 27a:	29 81       	ldd	r18, Y+1	; 0x01
+ 27c:	82 0f       	add	r24, r18
+ 27e:	91 1d       	adc	r25, r1
+ 280:	f6 01       	movw	r30, r12
+ 282:	91 83       	std	Z+1, r25	; 0x01
+ 284:	80 83       	st	Z, r24
+
+	return DS18B20_ERROR_OK;
+ 286:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 288:	29 96       	adiw	r28, 0x09	; 9
+ 28a:	0f b6       	in	r0, 0x3f	; 63
+ 28c:	f8 94       	cli
+ 28e:	de bf       	out	0x3e, r29	; 62
+ 290:	0f be       	out	0x3f, r0	; 63
+ 292:	cd bf       	out	0x3d, r28	; 61
+ 294:	df 91       	pop	r29
+ 296:	cf 91       	pop	r28
+ 298:	1f 91       	pop	r17
+ 29a:	0f 91       	pop	r16
+ 29c:	ff 90       	pop	r15
+ 29e:	ef 90       	pop	r14
+ 2a0:	df 90       	pop	r13
+ 2a2:	cf 90       	pop	r12
+ 2a4:	08 95       	ret
+
+000002a6 <LCD_cmd>:
+#include "lcd.h"
+
+//This function is used to send required commands to the LCD
+void LCD_cmd(unsigned char cmnd)
+{
+	LCD_DPRT = (LCD_DPRT & 0x0f)|(cmnd & 0xf0);		/* SEND COMMAND TO DATA PORT */
+ 2a6:	98 b3       	in	r25, 0x18	; 24
+ 2a8:	9f 70       	andi	r25, 0x0F	; 15
+ 2aa:	28 2f       	mov	r18, r24
+ 2ac:	20 7f       	andi	r18, 0xF0	; 240
+ 2ae:	92 2b       	or	r25, r18
+ 2b0:	98 bb       	out	0x18, r25	; 24
+	LCD_DPRT &= ~ (1<<LCD_RS);						/* RS = 0 FOR COMMAND */
+ 2b2:	98 b3       	in	r25, 0x18	; 24
+ 2b4:	9e 7f       	andi	r25, 0xFE	; 254
+ 2b6:	98 bb       	out	0x18, r25	; 24
+	LCD_DPRT |= (1<<LCD_EN);						/* EN = 1 FOR H TO L PULSE */
+ 2b8:	98 b3       	in	r25, 0x18	; 24
+ 2ba:	92 60       	ori	r25, 0x02	; 2
+ 2bc:	98 bb       	out	0x18, r25	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 2be:	00 c0       	rjmp	.+0      	; 0x2c0 <LCD_cmd+0x1a>
+ 2c0:	00 00       	nop
+	_delay_us(1);									/* WAIT FOR MAKE ENABLE WIDE */
+	LCD_DPRT &= ~(1<<LCD_EN);						/* EN = 0 FOR H TO L PULSE */
+ 2c2:	98 b3       	in	r25, 0x18	; 24
+ 2c4:	9d 7f       	andi	r25, 0xFD	; 253
+ 2c6:	98 bb       	out	0x18, r25	; 24
+ 2c8:	34 e6       	ldi	r19, 0x64	; 100
+ 2ca:	3a 95       	dec	r19
+ 2cc:	f1 f7       	brne	.-4      	; 0x2ca <LCD_cmd+0x24>
+	_delay_us(100);									/* WAIT FOR MAKE ENABLE WIDE */ //200
+	
+	LCD_DPRT = (LCD_DPRT & 0x0f)|(cmnd << 4);		/* SEND COMMAND TO DATA PORT */
+ 2ce:	28 b3       	in	r18, 0x18	; 24
+ 2d0:	30 e1       	ldi	r19, 0x10	; 16
+ 2d2:	83 9f       	mul	r24, r19
+ 2d4:	c0 01       	movw	r24, r0
+ 2d6:	11 24       	eor	r1, r1
+ 2d8:	92 2f       	mov	r25, r18
+ 2da:	9f 70       	andi	r25, 0x0F	; 15
+ 2dc:	89 2b       	or	r24, r25
+ 2de:	88 bb       	out	0x18, r24	; 24
+	LCD_DPRT |= (1<<LCD_EN);						/* EN = 1 FOR H TO L PULSE */
+ 2e0:	88 b3       	in	r24, 0x18	; 24
+ 2e2:	82 60       	ori	r24, 0x02	; 2
+ 2e4:	88 bb       	out	0x18, r24	; 24
+ 2e6:	00 c0       	rjmp	.+0      	; 0x2e8 <LCD_cmd+0x42>
+ 2e8:	00 00       	nop
+	_delay_us(1);									/* WAIT FOR MAKE ENABLE WIDE */
+	LCD_DPRT &= ~(1<<LCD_EN);						/* EN = 0 FOR H TO L PULSE */
+ 2ea:	88 b3       	in	r24, 0x18	; 24
+ 2ec:	8d 7f       	andi	r24, 0xFD	; 253
+ 2ee:	88 bb       	out	0x18, r24	; 24
+ 2f0:	8b ed       	ldi	r24, 0xDB	; 219
+ 2f2:	95 e0       	ldi	r25, 0x05	; 5
+ 2f4:	01 97       	sbiw	r24, 0x01	; 1
+ 2f6:	f1 f7       	brne	.-4      	; 0x2f4 <LCD_cmd+0x4e>
+ 2f8:	00 c0       	rjmp	.+0      	; 0x2fa <LCD_cmd+0x54>
+ 2fa:	00 00       	nop
+ 2fc:	08 95       	ret
+
+000002fe <LCD_write>:
+}
+
+//This function is used to display a single character on the LCD
+void LCD_write(unsigned char data)
+{
+	LCD_DPRT = (LCD_DPRT & 0x0f)|(data & 0xf0);		/* SEND DATA TO DATA PORT  sending upper nibble*/
+ 2fe:	98 b3       	in	r25, 0x18	; 24
+ 300:	9f 70       	andi	r25, 0x0F	; 15
+ 302:	28 2f       	mov	r18, r24
+ 304:	20 7f       	andi	r18, 0xF0	; 240
+ 306:	92 2b       	or	r25, r18
+ 308:	98 bb       	out	0x18, r25	; 24
+	LCD_DPRT |= (1<<LCD_RS);						/* MAKE RS = 1 FOR DATA */
+ 30a:	98 b3       	in	r25, 0x18	; 24
+ 30c:	91 60       	ori	r25, 0x01	; 1
+ 30e:	98 bb       	out	0x18, r25	; 24
+	LCD_DPRT |= (1<<LCD_EN);						/* EN=1 FOR H TO L PULSE */
+ 310:	98 b3       	in	r25, 0x18	; 24
+ 312:	92 60       	ori	r25, 0x02	; 2
+ 314:	98 bb       	out	0x18, r25	; 24
+ 316:	00 c0       	rjmp	.+0      	; 0x318 <LCD_write+0x1a>
+ 318:	00 00       	nop
+	_delay_us(1);									/* WAIT FOR MAKE ENABLE WIDE */
+	LCD_DPRT &= ~(1<<LCD_EN);						/* EN = 0 FOR H TO L PULSE */
+ 31a:	98 b3       	in	r25, 0x18	; 24
+ 31c:	9d 7f       	andi	r25, 0xFD	; 253
+ 31e:	98 bb       	out	0x18, r25	; 24
+ 320:	34 e6       	ldi	r19, 0x64	; 100
+ 322:	3a 95       	dec	r19
+ 324:	f1 f7       	brne	.-4      	; 0x322 <LCD_write+0x24>
+	_delay_us(100);			//200						/* WAIT FOR MAKE ENABLE WIDE */
+	
+	LCD_DPRT = (LCD_DPRT & 0x0f)|(data << 4);		/* sending lower nibble */
+ 326:	28 b3       	in	r18, 0x18	; 24
+ 328:	30 e1       	ldi	r19, 0x10	; 16
+ 32a:	83 9f       	mul	r24, r19
+ 32c:	c0 01       	movw	r24, r0
+ 32e:	11 24       	eor	r1, r1
+ 330:	92 2f       	mov	r25, r18
+ 332:	9f 70       	andi	r25, 0x0F	; 15
+ 334:	89 2b       	or	r24, r25
+ 336:	88 bb       	out	0x18, r24	; 24
+	LCD_DPRT |= (1<<LCD_EN);						/* EN=1 FOR H TO L PULSE*/
+ 338:	88 b3       	in	r24, 0x18	; 24
+ 33a:	82 60       	ori	r24, 0x02	; 2
+ 33c:	88 bb       	out	0x18, r24	; 24
+ 33e:	00 c0       	rjmp	.+0      	; 0x340 <LCD_write+0x42>
+ 340:	00 00       	nop
+	_delay_us(1);									/* WAIT FOR MAKE ENABLE WIDE*/
+	LCD_DPRT &= ~(1<<LCD_EN);						/* EN = 0 FOR H TO L PULSE*/
+ 342:	88 b3       	in	r24, 0x18	; 24
+ 344:	8d 7f       	andi	r24, 0xFD	; 253
+ 346:	88 bb       	out	0x18, r24	; 24
+ 348:	8b ed       	ldi	r24, 0xDB	; 219
+ 34a:	95 e0       	ldi	r25, 0x05	; 5
+ 34c:	01 97       	sbiw	r24, 0x01	; 1
+ 34e:	f1 f7       	brne	.-4      	; 0x34c <LCD_write+0x4e>
+ 350:	00 c0       	rjmp	.+0      	; 0x352 <LCD_write+0x54>
+ 352:	00 00       	nop
+ 354:	08 95       	ret
+
+00000356 <LCD_init_LCD>:
+	_delay_us(2000);								/* WAIT FOR MAKE ENABLE WIDE*/
+}
+
+void LCD_init_LCD(void)
+{
+	LCD_DDDR = 0xFF;								//Making DDRB pins as output pins
+ 356:	8f ef       	ldi	r24, 0xFF	; 255
+ 358:	87 bb       	out	0x17, r24	; 23
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 35a:	87 e9       	ldi	r24, 0x97	; 151
+ 35c:	9a e3       	ldi	r25, 0x3A	; 58
+ 35e:	01 97       	sbiw	r24, 0x01	; 1
+ 360:	f1 f7       	brne	.-4      	; 0x35e <LCD_init_LCD+0x8>
+ 362:	00 c0       	rjmp	.+0      	; 0x364 <LCD_init_LCD+0xe>
+ 364:	00 00       	nop
+	_delay_ms(20);									/* WAIT FOR SOME TIME */
+	LCD_cmd(0x02);								/* send for 4 bit initialization of LCD  */
+ 366:	82 e0       	ldi	r24, 0x02	; 2
+ 368:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x28);								/* INIT. LCD 2 LINE, 5 X 8 MATRIX 4bit mode */
+ 36c:	88 e2       	ldi	r24, 0x28	; 40
+ 36e:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x0C);								/* DISPLAY ON CURSOR ON */
+ 372:	8c e0       	ldi	r24, 0x0C	; 12
+ 374:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x01);								/* LCD CLEAR */
+ 378:	81 e0       	ldi	r24, 0x01	; 1
+ 37a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x82);								/* SHIFT CURSOR TO WRITE */
+ 37e:	82 e8       	ldi	r24, 0x82	; 130
+ 380:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+ 384:	08 95       	ret
+
+00000386 <LCD_Write_String>:
+
+
+
+//This function accepts a character array and passes it to LCD_Char() function to display a character at a time on the LCD.to display a character at a time on the LCD.
+void LCD_Write_String(char *str)							/* Send string to LCD function */
+{
+ 386:	0f 93       	push	r16
+ 388:	1f 93       	push	r17
+ 38a:	cf 93       	push	r28
+ 38c:	df 93       	push	r29
+ 38e:	8c 01       	movw	r16, r24
+	int i;
+	for(i=0;str[i]!=0;i++)							/* Send each char of string till the NULL */
+ 390:	c0 e0       	ldi	r28, 0x00	; 0
+ 392:	d0 e0       	ldi	r29, 0x00	; 0
+ 394:	03 c0       	rjmp	.+6      	; 0x39c <LCD_Write_String+0x16>
+	{
+		LCD_write (str[i]);							/* Call LCD data write */
+ 396:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+
+//This function accepts a character array and passes it to LCD_Char() function to display a character at a time on the LCD.to display a character at a time on the LCD.
+void LCD_Write_String(char *str)							/* Send string to LCD function */
+{
+	int i;
+	for(i=0;str[i]!=0;i++)							/* Send each char of string till the NULL */
+ 39a:	21 96       	adiw	r28, 0x01	; 1
+ 39c:	f8 01       	movw	r30, r16
+ 39e:	ec 0f       	add	r30, r28
+ 3a0:	fd 1f       	adc	r31, r29
+ 3a2:	80 81       	ld	r24, Z
+ 3a4:	81 11       	cpse	r24, r1
+ 3a6:	f7 cf       	rjmp	.-18     	; 0x396 <LCD_Write_String+0x10>
+	{
+		LCD_write (str[i]);							/* Call LCD data write */
+	}
+}
+ 3a8:	df 91       	pop	r29
+ 3aa:	cf 91       	pop	r28
+ 3ac:	1f 91       	pop	r17
+ 3ae:	0f 91       	pop	r16
+ 3b0:	08 95       	ret
+
+000003b2 <LCD_Set>:
+
+void LCD_Set()
+{
+	DDRB = 0xFF; //Set LCD data port as output
+ 3b2:	8f ef       	ldi	r24, 0xFF	; 255
+ 3b4:	87 bb       	out	0x17, r24	; 23
+	DDRD = 0xE0; //Set LCD signals (RS,RW,E) as output
+ 3b6:	80 ee       	ldi	r24, 0xE0	; 224
+ 3b8:	81 bb       	out	0x11, r24	; 17
+	LCD_init_LCD();  //Initialize LCD
+ 3ba:	0e 94 ab 01 	call	0x356	; 0x356 <LCD_init_LCD>
+ 3be:	8b e4       	ldi	r24, 0x4B	; 75
+ 3c0:	9d e1       	ldi	r25, 0x1D	; 29
+ 3c2:	01 97       	sbiw	r24, 0x01	; 1
+ 3c4:	f1 f7       	brne	.-4      	; 0x3c2 <LCD_Set+0x10>
+ 3c6:	00 c0       	rjmp	.+0      	; 0x3c8 <LCD_Set+0x16>
+ 3c8:	00 00       	nop
+	_delay_ms(10); // delay of 10 Milli seconds
+	LCD_cmd(0x0C); //display on, cursor off
+ 3ca:	8c e0       	ldi	r24, 0x0C	; 12
+ 3cc:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+ 3d0:	8b e4       	ldi	r24, 0x4B	; 75
+ 3d2:	9d e1       	ldi	r25, 0x1D	; 29
+ 3d4:	01 97       	sbiw	r24, 0x01	; 1
+ 3d6:	f1 f7       	brne	.-4      	; 0x3d4 <LCD_Set+0x22>
+ 3d8:	00 c0       	rjmp	.+0      	; 0x3da <LCD_Set+0x28>
+ 3da:	00 00       	nop
+ 3dc:	08 95       	ret
+
+000003de <keyfind>:
+
+char keyfind()
+{
+	while(1)
+	{
+		KEY_DDR = 0xF0;                /* set port direction as input-output */
+ 3de:	80 ef       	ldi	r24, 0xF0	; 240
+ 3e0:	8a bb       	out	0x1a, r24	; 26
+		KEY_PRT = 0xFF;
+ 3e2:	8f ef       	ldi	r24, 0xFF	; 255
+ 3e4:	8b bb       	out	0x1b, r24	; 27
+
+		do
+		{
+			KEY_PRT &= 0x0F;           /* mask PORT for column read only */
+ 3e6:	8b b3       	in	r24, 0x1b	; 27
+ 3e8:	8f 70       	andi	r24, 0x0F	; 15
+ 3ea:	8b bb       	out	0x1b, r24	; 27
+			asm("NOP");
+ 3ec:	00 00       	nop
+			colloc = (KEY_PIN & 0x0F); /* read status of column */
+ 3ee:	89 b3       	in	r24, 0x19	; 25
+ 3f0:	8f 70       	andi	r24, 0x0F	; 15
+ 3f2:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <colloc>
+		}while(colloc != 0x0F);
+ 3f6:	8f 30       	cpi	r24, 0x0F	; 15
+ 3f8:	b1 f7       	brne	.-20     	; 0x3e6 <keyfind+0x8>
+ 3fa:	8f e3       	ldi	r24, 0x3F	; 63
+ 3fc:	9c e9       	ldi	r25, 0x9C	; 156
+ 3fe:	01 97       	sbiw	r24, 0x01	; 1
+ 400:	f1 f7       	brne	.-4      	; 0x3fe <keyfind+0x20>
+ 402:	00 c0       	rjmp	.+0      	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+ 404:	00 00       	nop
+		do
+		{
+			do
+			{
+				_delay_ms(20);			   /* 20ms key debounce time */
+				colloc = (KEY_PIN & 0x0F); /* read status of column */
+ 406:	89 b3       	in	r24, 0x19	; 25
+ 408:	8f 70       	andi	r24, 0x0F	; 15
+ 40a:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <colloc>
+				}while(colloc == 0x0F);        /* check for any key press */
+ 40e:	8f 30       	cpi	r24, 0x0F	; 15
+ 410:	a1 f3       	breq	.-24     	; 0x3fa <keyfind+0x1c>
+ 412:	9f ef       	ldi	r25, 0xFF	; 255
+ 414:	29 ef       	ldi	r18, 0xF9	; 249
+ 416:	80 e0       	ldi	r24, 0x00	; 0
+ 418:	91 50       	subi	r25, 0x01	; 1
+ 41a:	20 40       	sbci	r18, 0x00	; 0
+ 41c:	80 40       	sbci	r24, 0x00	; 0
+ 41e:	e1 f7       	brne	.-8      	; 0x418 <__EEPROM_REGION_LENGTH__+0x18>
+ 420:	00 c0       	rjmp	.+0      	; 0x422 <__EEPROM_REGION_LENGTH__+0x22>
+ 422:	00 00       	nop
+				
+				_delay_ms (40);				   /* 20 ms key debounce time */
+				colloc = (KEY_PIN & 0x0F);
+ 424:	89 b3       	in	r24, 0x19	; 25
+ 426:	8f 70       	andi	r24, 0x0F	; 15
+ 428:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <colloc>
+			}while(colloc == 0x0F);
+ 42c:	8f 30       	cpi	r24, 0x0F	; 15
+ 42e:	29 f3       	breq	.-54     	; 0x3fa <keyfind+0x1c>
+
+			/* now check for rows */
+			KEY_PRT = 0xEF;            /* check for pressed key in 1st row */
+ 430:	8f ee       	ldi	r24, 0xEF	; 239
+ 432:	8b bb       	out	0x1b, r24	; 27
+			asm("NOP");
+ 434:	00 00       	nop
+			colloc = (KEY_PIN & 0x0F);
+ 436:	89 b3       	in	r24, 0x19	; 25
+ 438:	8f 70       	andi	r24, 0x0F	; 15
+ 43a:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <colloc>
+			if(colloc != 0x0F)
+ 43e:	8f 30       	cpi	r24, 0x0F	; 15
+ 440:	19 f0       	breq	.+6      	; 0x448 <__EEPROM_REGION_LENGTH__+0x48>
+			{
+				rowloc = 0;
+ 442:	10 92 6d 01 	sts	0x016D, r1	; 0x80016d <rowloc>
+				break;
+ 446:	27 c0       	rjmp	.+78     	; 0x496 <__EEPROM_REGION_LENGTH__+0x96>
+			}
+
+			KEY_PRT = 0xDF;			  /* check for pressed key in 2nd row */
+ 448:	8f ed       	ldi	r24, 0xDF	; 223
+ 44a:	8b bb       	out	0x1b, r24	; 27
+			asm("NOP");
+ 44c:	00 00       	nop
+			colloc = (KEY_PIN & 0x0F);
+ 44e:	89 b3       	in	r24, 0x19	; 25
+ 450:	8f 70       	andi	r24, 0x0F	; 15
+ 452:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <colloc>
+			if(colloc != 0x0F)
+ 456:	8f 30       	cpi	r24, 0x0F	; 15
+ 458:	21 f0       	breq	.+8      	; 0x462 <__EEPROM_REGION_LENGTH__+0x62>
+			{
+				rowloc = 1;
+ 45a:	81 e0       	ldi	r24, 0x01	; 1
+ 45c:	80 93 6d 01 	sts	0x016D, r24	; 0x80016d <rowloc>
+				break;
+ 460:	1a c0       	rjmp	.+52     	; 0x496 <__EEPROM_REGION_LENGTH__+0x96>
+			}
+			
+			KEY_PRT = 0xBF;			  /* check for pressed key in 3rd row */
+ 462:	8f eb       	ldi	r24, 0xBF	; 191
+ 464:	8b bb       	out	0x1b, r24	; 27
+			asm("NOP");
+ 466:	00 00       	nop
+			colloc = (KEY_PIN & 0x0F);
+ 468:	89 b3       	in	r24, 0x19	; 25
+ 46a:	8f 70       	andi	r24, 0x0F	; 15
+ 46c:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <colloc>
+			if(colloc != 0x0F)
+ 470:	8f 30       	cpi	r24, 0x0F	; 15
+ 472:	21 f0       	breq	.+8      	; 0x47c <__EEPROM_REGION_LENGTH__+0x7c>
+			{
+				rowloc = 2;
+ 474:	82 e0       	ldi	r24, 0x02	; 2
+ 476:	80 93 6d 01 	sts	0x016D, r24	; 0x80016d <rowloc>
+				break;
+ 47a:	0d c0       	rjmp	.+26     	; 0x496 <__EEPROM_REGION_LENGTH__+0x96>
+			}
+
+			KEY_PRT = 0x7F;			  /* check for pressed key in 4th row */
+ 47c:	8f e7       	ldi	r24, 0x7F	; 127
+ 47e:	8b bb       	out	0x1b, r24	; 27
+			asm("NOP");
+ 480:	00 00       	nop
+			colloc = (KEY_PIN & 0x0F);
+ 482:	89 b3       	in	r24, 0x19	; 25
+ 484:	8f 70       	andi	r24, 0x0F	; 15
+ 486:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <colloc>
+			if(colloc != 0x0F)
+ 48a:	8f 30       	cpi	r24, 0x0F	; 15
+ 48c:	09 f4       	brne	.+2      	; 0x490 <__EEPROM_REGION_LENGTH__+0x90>
+ 48e:	a7 cf       	rjmp	.-178    	; 0x3de <keyfind>
+			{
+				rowloc = 3;
+ 490:	83 e0       	ldi	r24, 0x03	; 3
+ 492:	80 93 6d 01 	sts	0x016D, r24	; 0x80016d <rowloc>
+				break;
+			}
+		}
+
+		if(colloc == 0x0E)
+ 496:	80 91 6c 01 	lds	r24, 0x016C	; 0x80016c <colloc>
+ 49a:	8e 30       	cpi	r24, 0x0E	; 14
+ 49c:	59 f4       	brne	.+22     	; 0x4b4 <__EEPROM_REGION_LENGTH__+0xb4>
+		return(keypad[rowloc][0]);
+ 49e:	e0 91 6d 01 	lds	r30, 0x016D	; 0x80016d <rowloc>
+ 4a2:	f0 e0       	ldi	r31, 0x00	; 0
+ 4a4:	ee 0f       	add	r30, r30
+ 4a6:	ff 1f       	adc	r31, r31
+ 4a8:	ee 0f       	add	r30, r30
+ 4aa:	ff 1f       	adc	r31, r31
+ 4ac:	e0 5a       	subi	r30, 0xA0	; 160
+ 4ae:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4b0:	80 81       	ld	r24, Z
+ 4b2:	08 95       	ret
+		else if(colloc == 0x0D)
+ 4b4:	8d 30       	cpi	r24, 0x0D	; 13
+ 4b6:	59 f4       	brne	.+22     	; 0x4ce <__EEPROM_REGION_LENGTH__+0xce>
+		return(keypad[rowloc][1]);
+ 4b8:	e0 91 6d 01 	lds	r30, 0x016D	; 0x80016d <rowloc>
+ 4bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 4be:	ee 0f       	add	r30, r30
+ 4c0:	ff 1f       	adc	r31, r31
+ 4c2:	ee 0f       	add	r30, r30
+ 4c4:	ff 1f       	adc	r31, r31
+ 4c6:	e0 5a       	subi	r30, 0xA0	; 160
+ 4c8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4ca:	81 81       	ldd	r24, Z+1	; 0x01
+ 4cc:	08 95       	ret
+		else if(colloc == 0x0B)
+ 4ce:	8b 30       	cpi	r24, 0x0B	; 11
+ 4d0:	59 f4       	brne	.+22     	; 0x4e8 <__EEPROM_REGION_LENGTH__+0xe8>
+		return(keypad[rowloc][2]);
+ 4d2:	e0 91 6d 01 	lds	r30, 0x016D	; 0x80016d <rowloc>
+ 4d6:	f0 e0       	ldi	r31, 0x00	; 0
+ 4d8:	ee 0f       	add	r30, r30
+ 4da:	ff 1f       	adc	r31, r31
+ 4dc:	ee 0f       	add	r30, r30
+ 4de:	ff 1f       	adc	r31, r31
+ 4e0:	e0 5a       	subi	r30, 0xA0	; 160
+ 4e2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4e4:	82 81       	ldd	r24, Z+2	; 0x02
+ 4e6:	08 95       	ret
+		else
+		return(keypad[rowloc][3]);
+ 4e8:	e0 91 6d 01 	lds	r30, 0x016D	; 0x80016d <rowloc>
+ 4ec:	f0 e0       	ldi	r31, 0x00	; 0
+ 4ee:	ee 0f       	add	r30, r30
+ 4f0:	ff 1f       	adc	r31, r31
+ 4f2:	ee 0f       	add	r30, r30
+ 4f4:	ff 1f       	adc	r31, r31
+ 4f6:	e0 5a       	subi	r30, 0xA0	; 160
+ 4f8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4fa:	83 81       	ldd	r24, Z+3	; 0x03
+	}
+ 4fc:	08 95       	ret
+
+000004fe <GetWaterLevel>:
+
+int GetWaterLevel(){
+		
+		while(1){
+		
+		if (PIND & (1<<PIND1)){ //if Pin1 of Port A is HIGH //Water level Sensor Float switch Small PP (MD0376)
+ 4fe:	81 9b       	sbis	0x10, 1	; 16
+ 500:	03 c0       	rjmp	.+6      	; 0x508 <GetWaterLevel+0xa>
+			 return(0);
+ 502:	80 e0       	ldi	r24, 0x00	; 0
+ 504:	90 e0       	ldi	r25, 0x00	; 0
+ 506:	08 95       	ret
+		}else
+			return(1);
+ 508:	81 e0       	ldi	r24, 0x01	; 1
+ 50a:	90 e0       	ldi	r25, 0x00	; 0
+	}
+}
+ 50c:	08 95       	ret
+
+0000050e <GetTemp>:
+
+
+int GetTemp(){
+ 50e:	ef 92       	push	r14
+ 510:	ff 92       	push	r15
+ 512:	0f 93       	push	r16
+ 514:	1f 93       	push	r17
+ 516:	cf 93       	push	r28
+ 518:	df 93       	push	r29
+ 51a:	00 d0       	rcall	.+0      	; 0x51c <GetTemp+0xe>
+ 51c:	cd b7       	in	r28, 0x3d	; 61
+ 51e:	de b7       	in	r29, 0x3e	; 62
+	
+	int temp;
+	
+	//Start conversion (without ROM matching)
+	ds18b20convert( &PORTD, &DDRD, &PIND, ( 1 << 7 ), NULL );
+ 520:	00 e0       	ldi	r16, 0x00	; 0
+ 522:	10 e0       	ldi	r17, 0x00	; 0
+ 524:	20 e8       	ldi	r18, 0x80	; 128
+ 526:	40 e3       	ldi	r20, 0x30	; 48
+ 528:	50 e0       	ldi	r21, 0x00	; 0
+ 52a:	61 e3       	ldi	r22, 0x31	; 49
+ 52c:	70 e0       	ldi	r23, 0x00	; 0
+ 52e:	82 e3       	ldi	r24, 0x32	; 50
+ 530:	90 e0       	ldi	r25, 0x00	; 0
+ 532:	0e 94 98 00 	call	0x130	; 0x130 <ds18b20convert>
+ 536:	2f ef       	ldi	r18, 0xFF	; 255
+ 538:	80 e7       	ldi	r24, 0x70	; 112
+ 53a:	92 e0       	ldi	r25, 0x02	; 2
+ 53c:	21 50       	subi	r18, 0x01	; 1
+ 53e:	80 40       	sbci	r24, 0x00	; 0
+ 540:	90 40       	sbci	r25, 0x00	; 0
+ 542:	e1 f7       	brne	.-8      	; 0x53c <GetTemp+0x2e>
+ 544:	00 c0       	rjmp	.+0      	; 0x546 <GetTemp+0x38>
+ 546:	00 00       	nop
+
+	//Delay (sensor needs time to perform conversion)
+	_delay_ms( 100 );
+
+	//Read temperature (without ROM matching)
+	ds18b20read( &PORTD, &DDRD, &PIND, ( 1 << 7 ), NULL, &temp );
+ 548:	ce 01       	movw	r24, r28
+ 54a:	01 96       	adiw	r24, 0x01	; 1
+ 54c:	7c 01       	movw	r14, r24
+ 54e:	20 e8       	ldi	r18, 0x80	; 128
+ 550:	40 e3       	ldi	r20, 0x30	; 48
+ 552:	50 e0       	ldi	r21, 0x00	; 0
+ 554:	61 e3       	ldi	r22, 0x31	; 49
+ 556:	70 e0       	ldi	r23, 0x00	; 0
+ 558:	82 e3       	ldi	r24, 0x32	; 50
+ 55a:	90 e0       	ldi	r25, 0x00	; 0
+ 55c:	0e 94 1d 01 	call	0x23a	; 0x23a <ds18b20read>
+
+	temp= temp/16;   //covert reading to celcius
+ 560:	89 81       	ldd	r24, Y+1	; 0x01
+ 562:	9a 81       	ldd	r25, Y+2	; 0x02
+ 564:	99 23       	and	r25, r25
+ 566:	0c f4       	brge	.+2      	; 0x56a <GetTemp+0x5c>
+ 568:	0f 96       	adiw	r24, 0x0f	; 15
+	
+	return(temp);	
+
+	
+}
+ 56a:	95 95       	asr	r25
+ 56c:	87 95       	ror	r24
+ 56e:	95 95       	asr	r25
+ 570:	87 95       	ror	r24
+ 572:	95 95       	asr	r25
+ 574:	87 95       	ror	r24
+ 576:	95 95       	asr	r25
+ 578:	87 95       	ror	r24
+ 57a:	0f 90       	pop	r0
+ 57c:	0f 90       	pop	r0
+ 57e:	df 91       	pop	r29
+ 580:	cf 91       	pop	r28
+ 582:	1f 91       	pop	r17
+ 584:	0f 91       	pop	r16
+ 586:	ff 90       	pop	r15
+ 588:	ef 90       	pop	r14
+ 58a:	08 95       	ret
+
+0000058c <HotWaterWashing>:
+	LCD_Write_String(" Drying Finished ");
+	_delay_ms(200);
+}
+
+
+void HotWaterWashing(int WashT, int tm){
+ 58c:	0f 93       	push	r16
+ 58e:	1f 93       	push	r17
+ 590:	cf 93       	push	r28
+ 592:	df 93       	push	r29
+ 594:	ec 01       	movw	r28, r24
+ 596:	8b 01       	movw	r16, r22
+	
+	LCD_cmd(0x01);
+ 598:	81 e0       	ldi	r24, 0x01	; 1
+ 59a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 59e:	80 e8       	ldi	r24, 0x80	; 128
+ 5a0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String("Wtr Heats Up...");
+ 5a4:	80 e7       	ldi	r24, 0x70	; 112
+ 5a6:	90 e0       	ldi	r25, 0x00	; 0
+ 5a8:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 5ac:	2f ef       	ldi	r18, 0xFF	; 255
+ 5ae:	84 e3       	ldi	r24, 0x34	; 52
+ 5b0:	9c e0       	ldi	r25, 0x0C	; 12
+ 5b2:	21 50       	subi	r18, 0x01	; 1
+ 5b4:	80 40       	sbci	r24, 0x00	; 0
+ 5b6:	90 40       	sbci	r25, 0x00	; 0
+ 5b8:	e1 f7       	brne	.-8      	; 0x5b2 <HotWaterWashing+0x26>
+ 5ba:	00 c0       	rjmp	.+0      	; 0x5bc <HotWaterWashing+0x30>
+ 5bc:	00 00       	nop
+ 5be:	0b c0       	rjmp	.+22     	; 0x5d6 <HotWaterWashing+0x4a>
+	_delay_ms(500);
+	
+	while (GetTemp()<WashT){
+		
+		PORTC = (1<<Relay02);; //Turn On Relay //Turn on Heater
+ 5c0:	82 e0       	ldi	r24, 0x02	; 2
+ 5c2:	85 bb       	out	0x15, r24	; 21
+ 5c4:	2f ef       	ldi	r18, 0xFF	; 255
+ 5c6:	89 e6       	ldi	r24, 0x69	; 105
+ 5c8:	98 e1       	ldi	r25, 0x18	; 24
+ 5ca:	21 50       	subi	r18, 0x01	; 1
+ 5cc:	80 40       	sbci	r24, 0x00	; 0
+ 5ce:	90 40       	sbci	r25, 0x00	; 0
+ 5d0:	e1 f7       	brne	.-8      	; 0x5ca <HotWaterWashing+0x3e>
+ 5d2:	00 c0       	rjmp	.+0      	; 0x5d4 <HotWaterWashing+0x48>
+ 5d4:	00 00       	nop
+	LCD_cmd(0x01);
+	LCD_cmd(0x80);
+	LCD_Write_String("Wtr Heats Up...");
+	_delay_ms(500);
+	
+	while (GetTemp()<WashT){
+ 5d6:	0e 94 87 02 	call	0x50e	; 0x50e <GetTemp>
+ 5da:	8c 17       	cp	r24, r28
+ 5dc:	9d 07       	cpc	r25, r29
+ 5de:	84 f3       	brlt	.-32     	; 0x5c0 <HotWaterWashing+0x34>
+		
+		PORTC = (1<<Relay02);; //Turn On Relay //Turn on Heater
+		_delay_ms(1000);
+	}
+	
+	if (GetTemp()<=WashT+5 && GetTemp()>=WashT-5){
+ 5e0:	0e 94 87 02 	call	0x50e	; 0x50e <GetTemp>
+ 5e4:	9e 01       	movw	r18, r28
+ 5e6:	2b 5f       	subi	r18, 0xFB	; 251
+ 5e8:	3f 4f       	sbci	r19, 0xFF	; 255
+ 5ea:	28 17       	cp	r18, r24
+ 5ec:	39 07       	cpc	r19, r25
+ 5ee:	3c f0       	brlt	.+14     	; 0x5fe <HotWaterWashing+0x72>
+ 5f0:	0e 94 87 02 	call	0x50e	; 0x50e <GetTemp>
+ 5f4:	25 97       	sbiw	r28, 0x05	; 5
+ 5f6:	8c 17       	cp	r24, r28
+ 5f8:	9d 07       	cpc	r25, r29
+ 5fa:	0c f0       	brlt	.+2      	; 0x5fe <HotWaterWashing+0x72>
+		PORTC = (0<<Relay02);; //Turn Off Relay //Turn Off Heater
+ 5fc:	15 ba       	out	0x15, r1	; 21
+	}
+	LCD_cmd(0x01);
+ 5fe:	81 e0       	ldi	r24, 0x01	; 1
+ 600:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 604:	80 e8       	ldi	r24, 0x80	; 128
+ 606:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String("Heating Finished");
+ 60a:	80 e8       	ldi	r24, 0x80	; 128
+ 60c:	90 e0       	ldi	r25, 0x00	; 0
+ 60e:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 612:	2f ef       	ldi	r18, 0xFF	; 255
+ 614:	89 e6       	ldi	r24, 0x69	; 105
+ 616:	98 e1       	ldi	r25, 0x18	; 24
+ 618:	21 50       	subi	r18, 0x01	; 1
+ 61a:	80 40       	sbci	r24, 0x00	; 0
+ 61c:	90 40       	sbci	r25, 0x00	; 0
+ 61e:	e1 f7       	brne	.-8      	; 0x618 <HotWaterWashing+0x8c>
+ 620:	00 c0       	rjmp	.+0      	; 0x622 <HotWaterWashing+0x96>
+ 622:	00 00       	nop
+	_delay_ms(1000);
+	
+	LCD_cmd(0x01);
+ 624:	81 e0       	ldi	r24, 0x01	; 1
+ 626:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 62a:	80 e8       	ldi	r24, 0x80	; 128
+ 62c:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Washing... ");
+ 630:	81 e9       	ldi	r24, 0x91	; 145
+ 632:	90 e0       	ldi	r25, 0x00	; 0
+ 634:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 638:	2f ef       	ldi	r18, 0xFF	; 255
+ 63a:	84 e3       	ldi	r24, 0x34	; 52
+ 63c:	9c e0       	ldi	r25, 0x0C	; 12
+ 63e:	21 50       	subi	r18, 0x01	; 1
+ 640:	80 40       	sbci	r24, 0x00	; 0
+ 642:	90 40       	sbci	r25, 0x00	; 0
+ 644:	e1 f7       	brne	.-8      	; 0x63e <HotWaterWashing+0xb2>
+ 646:	00 c0       	rjmp	.+0      	; 0x648 <HotWaterWashing+0xbc>
+ 648:	00 00       	nop
+	_delay_ms(500);
+	
+	PORTC = (1<<Relay01);; //Turn On Relay //Turn On Sprinkler
+ 64a:	84 e0       	ldi	r24, 0x04	; 4
+ 64c:	85 bb       	out	0x15, r24	; 21
+ 64e:	2f ef       	ldi	r18, 0xFF	; 255
+ 650:	8e e9       	ldi	r24, 0x9E	; 158
+ 652:	94 e2       	ldi	r25, 0x24	; 36
+ 654:	21 50       	subi	r18, 0x01	; 1
+ 656:	80 40       	sbci	r24, 0x00	; 0
+ 658:	90 40       	sbci	r25, 0x00	; 0
+ 65a:	e1 f7       	brne	.-8      	; 0x654 <HotWaterWashing+0xc8>
+ 65c:	00 c0       	rjmp	.+0      	; 0x65e <HotWaterWashing+0xd2>
+ 65e:	00 00       	nop
+	_delay_ms(1500);
+	
+	//AddTimer
+	extraTime=tm;
+ 660:	10 93 6b 01 	sts	0x016B, r17	; 0x80016b <__data_end+0x1>
+ 664:	00 93 6a 01 	sts	0x016A, r16	; 0x80016a <__data_end>
+	TCCR1B = (1 << WGM12); //Timer
+ 668:	88 e0       	ldi	r24, 0x08	; 8
+ 66a:	8e bd       	out	0x2e, r24	; 46
+	OCR1A = 46875;//Ticks for 3seconds
+ 66c:	8b e1       	ldi	r24, 0x1B	; 27
+ 66e:	97 eb       	ldi	r25, 0xB7	; 183
+ 670:	9b bd       	out	0x2b, r25	; 43
+ 672:	8a bd       	out	0x2a, r24	; 42
+	TIMSK = (1 << OCIE1A);
+ 674:	80 e1       	ldi	r24, 0x10	; 16
+ 676:	89 bf       	out	0x39, r24	; 57
+	
+	sei();
+ 678:	78 94       	sei
+	
+	TCCR1B |= (1 << CS12) | (1 << CS10); //1024 Pre-scaler
+ 67a:	8e b5       	in	r24, 0x2e	; 46
+ 67c:	85 60       	ori	r24, 0x05	; 5
+ 67e:	8e bd       	out	0x2e, r24	; 46
+ 680:	2f ef       	ldi	r18, 0xFF	; 255
+ 682:	81 ee       	ldi	r24, 0xE1	; 225
+ 684:	94 e0       	ldi	r25, 0x04	; 4
+ 686:	21 50       	subi	r18, 0x01	; 1
+ 688:	80 40       	sbci	r24, 0x00	; 0
+ 68a:	90 40       	sbci	r25, 0x00	; 0
+ 68c:	e1 f7       	brne	.-8      	; 0x686 <HotWaterWashing+0xfa>
+ 68e:	00 c0       	rjmp	.+0      	; 0x690 <HotWaterWashing+0x104>
+ 690:	00 00       	nop
+	//End Timer
+	
+	_delay_ms(200);
+	PORTC = (0<<Relay01);; //Turn off Relay //Turn off sprinkler
+ 692:	15 ba       	out	0x15, r1	; 21
+	LCD_cmd(0x01);
+ 694:	81 e0       	ldi	r24, 0x01	; 1
+ 696:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 69a:	80 e8       	ldi	r24, 0x80	; 128
+ 69c:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Finished ");
+ 6a0:	8b e2       	ldi	r24, 0x2B	; 43
+ 6a2:	91 e0       	ldi	r25, 0x01	; 1
+ 6a4:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+	LCD_cmd(0x01);
+ 6a8:	81 e0       	ldi	r24, 0x01	; 1
+ 6aa:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 6ae:	80 e8       	ldi	r24, 0x80	; 128
+ 6b0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+}
+ 6b4:	df 91       	pop	r29
+ 6b6:	cf 91       	pop	r28
+ 6b8:	1f 91       	pop	r17
+ 6ba:	0f 91       	pop	r16
+ 6bc:	08 95       	ret
+
+000006be <NormalWashing>:
+
+void NormalWashing(int tm){
+ 6be:	cf 93       	push	r28
+ 6c0:	df 93       	push	r29
+ 6c2:	ec 01       	movw	r28, r24
+	
+	LCD_cmd(0x01);
+ 6c4:	81 e0       	ldi	r24, 0x01	; 1
+ 6c6:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 6ca:	80 e8       	ldi	r24, 0x80	; 128
+ 6cc:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Washing... ");
+ 6d0:	81 e9       	ldi	r24, 0x91	; 145
+ 6d2:	90 e0       	ldi	r25, 0x00	; 0
+ 6d4:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 6d8:	2f ef       	ldi	r18, 0xFF	; 255
+ 6da:	81 ee       	ldi	r24, 0xE1	; 225
+ 6dc:	94 e0       	ldi	r25, 0x04	; 4
+ 6de:	21 50       	subi	r18, 0x01	; 1
+ 6e0:	80 40       	sbci	r24, 0x00	; 0
+ 6e2:	90 40       	sbci	r25, 0x00	; 0
+ 6e4:	e1 f7       	brne	.-8      	; 0x6de <NormalWashing+0x20>
+ 6e6:	00 c0       	rjmp	.+0      	; 0x6e8 <NormalWashing+0x2a>
+ 6e8:	00 00       	nop
+	_delay_ms(200);
+	
+	PORTC = (1<<Relay01);; //Turn On Relay //Turn On Wash Pump
+ 6ea:	84 e0       	ldi	r24, 0x04	; 4
+ 6ec:	85 bb       	out	0x15, r24	; 21
+ 6ee:	2f ef       	ldi	r18, 0xFF	; 255
+ 6f0:	8e e9       	ldi	r24, 0x9E	; 158
+ 6f2:	94 e2       	ldi	r25, 0x24	; 36
+ 6f4:	21 50       	subi	r18, 0x01	; 1
+ 6f6:	80 40       	sbci	r24, 0x00	; 0
+ 6f8:	90 40       	sbci	r25, 0x00	; 0
+ 6fa:	e1 f7       	brne	.-8      	; 0x6f4 <NormalWashing+0x36>
+ 6fc:	00 c0       	rjmp	.+0      	; 0x6fe <NormalWashing+0x40>
+ 6fe:	00 00       	nop
+	_delay_ms(1500);
+	
+	//AddTimer
+	extraTime=tm;
+ 700:	d0 93 6b 01 	sts	0x016B, r29	; 0x80016b <__data_end+0x1>
+ 704:	c0 93 6a 01 	sts	0x016A, r28	; 0x80016a <__data_end>
+	TCCR1B = (1 << WGM12); //Timer
+ 708:	88 e0       	ldi	r24, 0x08	; 8
+ 70a:	8e bd       	out	0x2e, r24	; 46
+	OCR1A = 46875;//Ticks for 3seconds
+ 70c:	8b e1       	ldi	r24, 0x1B	; 27
+ 70e:	97 eb       	ldi	r25, 0xB7	; 183
+ 710:	9b bd       	out	0x2b, r25	; 43
+ 712:	8a bd       	out	0x2a, r24	; 42
+	TIMSK = (1 << OCIE1A);
+ 714:	80 e1       	ldi	r24, 0x10	; 16
+ 716:	89 bf       	out	0x39, r24	; 57
+	
+	sei();
+ 718:	78 94       	sei
+	
+	TCCR1B |= (1 << CS12) | (1 << CS10); //1024 Pre-scaler
+ 71a:	8e b5       	in	r24, 0x2e	; 46
+ 71c:	85 60       	ori	r24, 0x05	; 5
+ 71e:	8e bd       	out	0x2e, r24	; 46
+ 720:	2f ef       	ldi	r18, 0xFF	; 255
+ 722:	81 ee       	ldi	r24, 0xE1	; 225
+ 724:	94 e0       	ldi	r25, 0x04	; 4
+ 726:	21 50       	subi	r18, 0x01	; 1
+ 728:	80 40       	sbci	r24, 0x00	; 0
+ 72a:	90 40       	sbci	r25, 0x00	; 0
+ 72c:	e1 f7       	brne	.-8      	; 0x726 <NormalWashing+0x68>
+ 72e:	00 c0       	rjmp	.+0      	; 0x730 <NormalWashing+0x72>
+ 730:	00 00       	nop
+	//End Timer
+	
+	_delay_ms(200);
+	PORTC = (0<<Relay01);; //Turn off Relay //Turn off sprinkler
+ 732:	15 ba       	out	0x15, r1	; 21
+	LCD_cmd(0x01);
+ 734:	81 e0       	ldi	r24, 0x01	; 1
+ 736:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 73a:	80 e8       	ldi	r24, 0x80	; 128
+ 73c:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Finished ");
+ 740:	8b e2       	ldi	r24, 0x2B	; 43
+ 742:	91 e0       	ldi	r25, 0x01	; 1
+ 744:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+	LCD_cmd(0x01);
+ 748:	81 e0       	ldi	r24, 0x01	; 1
+ 74a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+}
+ 74e:	df 91       	pop	r29
+ 750:	cf 91       	pop	r28
+ 752:	08 95       	ret
+
+00000754 <WaterDraining>:
+
+void WaterDraining(){
+	
+	//Water Draining
+	LCD_cmd(0x01);
+ 754:	81 e0       	ldi	r24, 0x01	; 1
+ 756:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 75a:	80 e8       	ldi	r24, 0x80	; 128
+ 75c:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Draining... ");
+ 760:	8e e9       	ldi	r24, 0x9E	; 158
+ 762:	90 e0       	ldi	r25, 0x00	; 0
+ 764:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 768:	2f ef       	ldi	r18, 0xFF	; 255
+ 76a:	81 ee       	ldi	r24, 0xE1	; 225
+ 76c:	94 e0       	ldi	r25, 0x04	; 4
+ 76e:	21 50       	subi	r18, 0x01	; 1
+ 770:	80 40       	sbci	r24, 0x00	; 0
+ 772:	90 40       	sbci	r25, 0x00	; 0
+ 774:	e1 f7       	brne	.-8      	; 0x76e <WaterDraining+0x1a>
+ 776:	00 c0       	rjmp	.+0      	; 0x778 <WaterDraining+0x24>
+ 778:	00 00       	nop
+ 77a:	02 c0       	rjmp	.+4      	; 0x780 <WaterDraining+0x2c>
+	_delay_ms(200);
+	
+	while(GetWaterLevel()==1){
+		PORTC = (1<<Relay04);; //Turn On Relay04 //Turn On Solenoid for Drain Pump & Drain Pump
+ 77c:	88 e0       	ldi	r24, 0x08	; 8
+ 77e:	85 bb       	out	0x15, r24	; 21
+	LCD_cmd(0x01);
+	LCD_cmd(0x80);
+	LCD_Write_String(" Draining... ");
+	_delay_ms(200);
+	
+	while(GetWaterLevel()==1){
+ 780:	0e 94 7f 02 	call	0x4fe	; 0x4fe <GetWaterLevel>
+ 784:	01 97       	sbiw	r24, 0x01	; 1
+ 786:	d1 f3       	breq	.-12     	; 0x77c <WaterDraining+0x28>
+		PORTC = (1<<Relay04);; //Turn On Relay04 //Turn On Solenoid for Drain Pump & Drain Pump
+	}
+	PORTC= (0<<Relay04);; //Turn Off Relay04
+ 788:	15 ba       	out	0x15, r1	; 21
+	
+	LCD_cmd(0x01);
+ 78a:	81 e0       	ldi	r24, 0x01	; 1
+ 78c:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+ 790:	08 95       	ret
+
+00000792 <WaterIn>:
+}
+
+void WaterIn(){
+	
+	//Water In
+	LCD_cmd(0x01);
+ 792:	81 e0       	ldi	r24, 0x01	; 1
+ 794:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 798:	80 e8       	ldi	r24, 0x80	; 128
+ 79a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Water In... ");
+ 79e:	8c ea       	ldi	r24, 0xAC	; 172
+ 7a0:	90 e0       	ldi	r25, 0x00	; 0
+ 7a2:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 7a6:	2f ef       	ldi	r18, 0xFF	; 255
+ 7a8:	81 ee       	ldi	r24, 0xE1	; 225
+ 7aa:	94 e0       	ldi	r25, 0x04	; 4
+ 7ac:	21 50       	subi	r18, 0x01	; 1
+ 7ae:	80 40       	sbci	r24, 0x00	; 0
+ 7b0:	90 40       	sbci	r25, 0x00	; 0
+ 7b2:	e1 f7       	brne	.-8      	; 0x7ac <WaterIn+0x1a>
+ 7b4:	00 c0       	rjmp	.+0      	; 0x7b6 <WaterIn+0x24>
+ 7b6:	00 00       	nop
+ 7b8:	02 c0       	rjmp	.+4      	; 0x7be <WaterIn+0x2c>
+	_delay_ms(200);
+	
+	while(GetWaterLevel()==0){
+		PORTC = (1<<Relay03);; //Turn On Relay03 //Turn On Solenoid for Drain Pump & Drain Pump
+ 7ba:	81 e0       	ldi	r24, 0x01	; 1
+ 7bc:	85 bb       	out	0x15, r24	; 21
+	LCD_cmd(0x01);
+	LCD_cmd(0x80);
+	LCD_Write_String(" Water In... ");
+	_delay_ms(200);
+	
+	while(GetWaterLevel()==0){
+ 7be:	0e 94 7f 02 	call	0x4fe	; 0x4fe <GetWaterLevel>
+ 7c2:	89 2b       	or	r24, r25
+ 7c4:	d1 f3       	breq	.-12     	; 0x7ba <WaterIn+0x28>
+		PORTC = (1<<Relay03);; //Turn On Relay03 //Turn On Solenoid for Drain Pump & Drain Pump
+	}
+	PORTC= (0<<Relay03);; //Turn Off Relay03
+ 7c6:	15 ba       	out	0x15, r1	; 21
+ 7c8:	08 95       	ret
+
+000007ca <FastMode>:
+	_delay_ms(200);
+	WaterDraining();
+	_delay_ms(200);
+}
+
+void FastMode(){
+ 7ca:	cf 93       	push	r28
+ 7cc:	df 93       	push	r29
+
+	LCD_cmd(0x80);
+ 7ce:	80 e8       	ldi	r24, 0x80	; 128
+ 7d0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Fast Mode ");
+ 7d4:	8a eb       	ldi	r24, 0xBA	; 186
+ 7d6:	90 e0       	ldi	r25, 0x00	; 0
+ 7d8:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 7dc:	2f ef       	ldi	r18, 0xFF	; 255
+ 7de:	81 ee       	ldi	r24, 0xE1	; 225
+ 7e0:	94 e0       	ldi	r25, 0x04	; 4
+ 7e2:	21 50       	subi	r18, 0x01	; 1
+ 7e4:	80 40       	sbci	r24, 0x00	; 0
+ 7e6:	90 40       	sbci	r25, 0x00	; 0
+ 7e8:	e1 f7       	brne	.-8      	; 0x7e2 <FastMode+0x18>
+ 7ea:	00 c0       	rjmp	.+0      	; 0x7ec <FastMode+0x22>
+ 7ec:	00 00       	nop
+	_delay_ms(200);
+	LCD_cmd(0xC0);
+ 7ee:	80 ec       	ldi	r24, 0xC0	; 192
+ 7f0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Enabled ");
+ 7f4:	86 ec       	ldi	r24, 0xC6	; 198
+ 7f6:	90 e0       	ldi	r25, 0x00	; 0
+ 7f8:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 7fc:	2f ef       	ldi	r18, 0xFF	; 255
+ 7fe:	81 ee       	ldi	r24, 0xE1	; 225
+ 800:	94 e0       	ldi	r25, 0x04	; 4
+ 802:	21 50       	subi	r18, 0x01	; 1
+ 804:	80 40       	sbci	r24, 0x00	; 0
+ 806:	90 40       	sbci	r25, 0x00	; 0
+ 808:	e1 f7       	brne	.-8      	; 0x802 <__DATA_REGION_LENGTH__+0x2>
+ 80a:	00 c0       	rjmp	.+0      	; 0x80c <__DATA_REGION_LENGTH__+0xc>
+ 80c:	00 00       	nop
+	
+	//Wash Time = 12 Seconds for each cycle
+	int NoOfcycle=3;
+	
+	
+	while(GetWaterLevel()==0){
+ 80e:	31 c0       	rjmp	.+98     	; 0x872 <__stack+0x13>
+		
+		LCD_cmd(0x01);
+ 810:	81 e0       	ldi	r24, 0x01	; 1
+ 812:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_cmd(0x80);
+ 816:	80 e8       	ldi	r24, 0x80	; 128
+ 818:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Water Lvl Low ");
+ 81c:	80 ed       	ldi	r24, 0xD0	; 208
+ 81e:	90 e0       	ldi	r25, 0x00	; 0
+ 820:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 824:	2f ef       	ldi	r18, 0xFF	; 255
+ 826:	81 ee       	ldi	r24, 0xE1	; 225
+ 828:	94 e0       	ldi	r25, 0x04	; 4
+ 82a:	21 50       	subi	r18, 0x01	; 1
+ 82c:	80 40       	sbci	r24, 0x00	; 0
+ 82e:	90 40       	sbci	r25, 0x00	; 0
+ 830:	e1 f7       	brne	.-8      	; 0x82a <__DATA_REGION_LENGTH__+0x2a>
+ 832:	00 c0       	rjmp	.+0      	; 0x834 <__DATA_REGION_LENGTH__+0x34>
+ 834:	00 00       	nop
+		_delay_ms(200);
+		LCD_cmd(0xC0);
+ 836:	80 ec       	ldi	r24, 0xC0	; 192
+ 838:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Water In... ");
+ 83c:	8c ea       	ldi	r24, 0xAC	; 172
+ 83e:	90 e0       	ldi	r25, 0x00	; 0
+ 840:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 844:	2f ef       	ldi	r18, 0xFF	; 255
+ 846:	81 ee       	ldi	r24, 0xE1	; 225
+ 848:	94 e0       	ldi	r25, 0x04	; 4
+ 84a:	21 50       	subi	r18, 0x01	; 1
+ 84c:	80 40       	sbci	r24, 0x00	; 0
+ 84e:	90 40       	sbci	r25, 0x00	; 0
+ 850:	e1 f7       	brne	.-8      	; 0x84a <__DATA_REGION_LENGTH__+0x4a>
+ 852:	00 c0       	rjmp	.+0      	; 0x854 <__DATA_REGION_LENGTH__+0x54>
+ 854:	00 00       	nop
+		_delay_ms(200);
+		
+		WaterIn();
+ 856:	0e 94 c9 03 	call	0x792	; 0x792 <WaterIn>
+ 85a:	2f ef       	ldi	r18, 0xFF	; 255
+ 85c:	84 e3       	ldi	r24, 0x34	; 52
+ 85e:	9c e0       	ldi	r25, 0x0C	; 12
+ 860:	21 50       	subi	r18, 0x01	; 1
+ 862:	80 40       	sbci	r24, 0x00	; 0
+ 864:	90 40       	sbci	r25, 0x00	; 0
+ 866:	e1 f7       	brne	.-8      	; 0x860 <__stack+0x1>
+ 868:	00 c0       	rjmp	.+0      	; 0x86a <__stack+0xb>
+ 86a:	00 00       	nop
+		_delay_ms(500);
+		LCD_cmd(0x01);
+ 86c:	81 e0       	ldi	r24, 0x01	; 1
+ 86e:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	
+	//Wash Time = 12 Seconds for each cycle
+	int NoOfcycle=3;
+	
+	
+	while(GetWaterLevel()==0){
+ 872:	0e 94 7f 02 	call	0x4fe	; 0x4fe <GetWaterLevel>
+ 876:	89 2b       	or	r24, r25
+ 878:	59 f2       	breq	.-106    	; 0x810 <__DATA_REGION_LENGTH__+0x10>
+		_delay_ms(500);
+		LCD_cmd(0x01);
+		
+	}
+		
+		LCD_cmd(0x01);
+ 87a:	81 e0       	ldi	r24, 0x01	; 1
+ 87c:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_cmd(0x80);
+ 880:	80 e8       	ldi	r24, 0x80	; 128
+ 882:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Water Lvl High ");
+ 886:	80 ee       	ldi	r24, 0xE0	; 224
+ 888:	90 e0       	ldi	r25, 0x00	; 0
+ 88a:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 88e:	2f ef       	ldi	r18, 0xFF	; 255
+ 890:	81 ee       	ldi	r24, 0xE1	; 225
+ 892:	94 e0       	ldi	r25, 0x04	; 4
+ 894:	21 50       	subi	r18, 0x01	; 1
+ 896:	80 40       	sbci	r24, 0x00	; 0
+ 898:	90 40       	sbci	r25, 0x00	; 0
+ 89a:	e1 f7       	brne	.-8      	; 0x894 <__stack+0x35>
+ 89c:	00 c0       	rjmp	.+0      	; 0x89e <__stack+0x3f>
+ 89e:	00 00       	nop
+		_delay_ms(200);
+		LCD_cmd(0x01);
+ 8a0:	81 e0       	ldi	r24, 0x01	; 1
+ 8a2:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_cmd(0x80);
+ 8a6:	80 e8       	ldi	r24, 0x80	; 128
+ 8a8:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String("Wash Processing");
+ 8ac:	81 ef       	ldi	r24, 0xF1	; 241
+ 8ae:	90 e0       	ldi	r25, 0x00	; 0
+ 8b0:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 8b4:	2f ef       	ldi	r18, 0xFF	; 255
+ 8b6:	81 ee       	ldi	r24, 0xE1	; 225
+ 8b8:	94 e0       	ldi	r25, 0x04	; 4
+ 8ba:	21 50       	subi	r18, 0x01	; 1
+ 8bc:	80 40       	sbci	r24, 0x00	; 0
+ 8be:	90 40       	sbci	r25, 0x00	; 0
+ 8c0:	e1 f7       	brne	.-8      	; 0x8ba <__stack+0x5b>
+ 8c2:	00 c0       	rjmp	.+0      	; 0x8c4 <__stack+0x65>
+ 8c4:	00 00       	nop
+		_delay_ms(200);
+		
+		for(int i=0; i<NoOfcycle; i++){
+ 8c6:	c0 e0       	ldi	r28, 0x00	; 0
+ 8c8:	d0 e0       	ldi	r29, 0x00	; 0
+ 8ca:	09 c0       	rjmp	.+18     	; 0x8de <__stack+0x7f>
+			WaterIn();
+ 8cc:	0e 94 c9 03 	call	0x792	; 0x792 <WaterIn>
+			NormalWashing(3); //3x7 cycle minimize to 3x4 //timer set to 12seconds wash time
+ 8d0:	83 e0       	ldi	r24, 0x03	; 3
+ 8d2:	90 e0       	ldi	r25, 0x00	; 0
+ 8d4:	0e 94 5f 03 	call	0x6be	; 0x6be <NormalWashing>
+			WaterDraining();
+ 8d8:	0e 94 aa 03 	call	0x754	; 0x754 <WaterDraining>
+		LCD_cmd(0x01);
+		LCD_cmd(0x80);
+		LCD_Write_String("Wash Processing");
+		_delay_ms(200);
+		
+		for(int i=0; i<NoOfcycle; i++){
+ 8dc:	21 96       	adiw	r28, 0x01	; 1
+ 8de:	c3 30       	cpi	r28, 0x03	; 3
+ 8e0:	d1 05       	cpc	r29, r1
+ 8e2:	a4 f3       	brlt	.-24     	; 0x8cc <__stack+0x6d>
+			WaterIn();
+			NormalWashing(3); //3x7 cycle minimize to 3x4 //timer set to 12seconds wash time
+			WaterDraining();
+		}
+}
+ 8e4:	df 91       	pop	r29
+ 8e6:	cf 91       	pop	r28
+ 8e8:	08 95       	ret
+
+000008ea <FruitMode>:
+
+void FruitMode(){
+ 8ea:	cf 93       	push	r28
+ 8ec:	df 93       	push	r29
+	
+	LCD_cmd(0x80);
+ 8ee:	80 e8       	ldi	r24, 0x80	; 128
+ 8f0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Fruit Mode ");
+ 8f4:	81 e0       	ldi	r24, 0x01	; 1
+ 8f6:	91 e0       	ldi	r25, 0x01	; 1
+ 8f8:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 8fc:	2f ef       	ldi	r18, 0xFF	; 255
+ 8fe:	81 ee       	ldi	r24, 0xE1	; 225
+ 900:	94 e0       	ldi	r25, 0x04	; 4
+ 902:	21 50       	subi	r18, 0x01	; 1
+ 904:	80 40       	sbci	r24, 0x00	; 0
+ 906:	90 40       	sbci	r25, 0x00	; 0
+ 908:	e1 f7       	brne	.-8      	; 0x902 <FruitMode+0x18>
+ 90a:	00 c0       	rjmp	.+0      	; 0x90c <FruitMode+0x22>
+ 90c:	00 00       	nop
+	_delay_ms(200);
+	LCD_cmd(0xC0);
+ 90e:	80 ec       	ldi	r24, 0xC0	; 192
+ 910:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Enabled ");
+ 914:	86 ec       	ldi	r24, 0xC6	; 198
+ 916:	90 e0       	ldi	r25, 0x00	; 0
+ 918:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 91c:	2f ef       	ldi	r18, 0xFF	; 255
+ 91e:	81 ee       	ldi	r24, 0xE1	; 225
+ 920:	94 e0       	ldi	r25, 0x04	; 4
+ 922:	21 50       	subi	r18, 0x01	; 1
+ 924:	80 40       	sbci	r24, 0x00	; 0
+ 926:	90 40       	sbci	r25, 0x00	; 0
+ 928:	e1 f7       	brne	.-8      	; 0x922 <FruitMode+0x38>
+ 92a:	00 c0       	rjmp	.+0      	; 0x92c <FruitMode+0x42>
+ 92c:	00 00       	nop
+	_delay_ms(200);
+	
+	//wash time=15 seconds for each cycles
+	int NoOfcycle=2;
+	
+	if (GetWaterLevel()==0){
+ 92e:	0e 94 7f 02 	call	0x4fe	; 0x4fe <GetWaterLevel>
+ 932:	89 2b       	or	r24, r25
+ 934:	89 f5       	brne	.+98     	; 0x998 <FruitMode+0xae>
+		
+		LCD_cmd(0x01);
+ 936:	81 e0       	ldi	r24, 0x01	; 1
+ 938:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_cmd(0x80);
+ 93c:	80 e8       	ldi	r24, 0x80	; 128
+ 93e:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Water Lvl Low ");
+ 942:	80 ed       	ldi	r24, 0xD0	; 208
+ 944:	90 e0       	ldi	r25, 0x00	; 0
+ 946:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 94a:	2f ef       	ldi	r18, 0xFF	; 255
+ 94c:	81 ee       	ldi	r24, 0xE1	; 225
+ 94e:	94 e0       	ldi	r25, 0x04	; 4
+ 950:	21 50       	subi	r18, 0x01	; 1
+ 952:	80 40       	sbci	r24, 0x00	; 0
+ 954:	90 40       	sbci	r25, 0x00	; 0
+ 956:	e1 f7       	brne	.-8      	; 0x950 <FruitMode+0x66>
+ 958:	00 c0       	rjmp	.+0      	; 0x95a <FruitMode+0x70>
+ 95a:	00 00       	nop
+		_delay_ms(200);
+		LCD_cmd(0xC0);
+ 95c:	80 ec       	ldi	r24, 0xC0	; 192
+ 95e:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Water In... ");
+ 962:	8c ea       	ldi	r24, 0xAC	; 172
+ 964:	90 e0       	ldi	r25, 0x00	; 0
+ 966:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 96a:	2f ef       	ldi	r18, 0xFF	; 255
+ 96c:	81 ee       	ldi	r24, 0xE1	; 225
+ 96e:	94 e0       	ldi	r25, 0x04	; 4
+ 970:	21 50       	subi	r18, 0x01	; 1
+ 972:	80 40       	sbci	r24, 0x00	; 0
+ 974:	90 40       	sbci	r25, 0x00	; 0
+ 976:	e1 f7       	brne	.-8      	; 0x970 <FruitMode+0x86>
+ 978:	00 c0       	rjmp	.+0      	; 0x97a <FruitMode+0x90>
+ 97a:	00 00       	nop
+		_delay_ms(200);
+		
+		WaterIn();
+ 97c:	0e 94 c9 03 	call	0x792	; 0x792 <WaterIn>
+ 980:	2f ef       	ldi	r18, 0xFF	; 255
+ 982:	84 e3       	ldi	r24, 0x34	; 52
+ 984:	9c e0       	ldi	r25, 0x0C	; 12
+ 986:	21 50       	subi	r18, 0x01	; 1
+ 988:	80 40       	sbci	r24, 0x00	; 0
+ 98a:	90 40       	sbci	r25, 0x00	; 0
+ 98c:	e1 f7       	brne	.-8      	; 0x986 <FruitMode+0x9c>
+ 98e:	00 c0       	rjmp	.+0      	; 0x990 <FruitMode+0xa6>
+ 990:	00 00       	nop
+		_delay_ms(500);
+		LCD_cmd(0x01);
+ 992:	81 e0       	ldi	r24, 0x01	; 1
+ 994:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		
+	}
+	
+	LCD_cmd(0x01);
+ 998:	81 e0       	ldi	r24, 0x01	; 1
+ 99a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 99e:	80 e8       	ldi	r24, 0x80	; 128
+ 9a0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Water Lvl High ");
+ 9a4:	80 ee       	ldi	r24, 0xE0	; 224
+ 9a6:	90 e0       	ldi	r25, 0x00	; 0
+ 9a8:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 9ac:	2f ef       	ldi	r18, 0xFF	; 255
+ 9ae:	81 ee       	ldi	r24, 0xE1	; 225
+ 9b0:	94 e0       	ldi	r25, 0x04	; 4
+ 9b2:	21 50       	subi	r18, 0x01	; 1
+ 9b4:	80 40       	sbci	r24, 0x00	; 0
+ 9b6:	90 40       	sbci	r25, 0x00	; 0
+ 9b8:	e1 f7       	brne	.-8      	; 0x9b2 <FruitMode+0xc8>
+ 9ba:	00 c0       	rjmp	.+0      	; 0x9bc <FruitMode+0xd2>
+ 9bc:	00 00       	nop
+	_delay_ms(200);
+	LCD_cmd(0x01);
+ 9be:	81 e0       	ldi	r24, 0x01	; 1
+ 9c0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ 9c4:	80 e8       	ldi	r24, 0x80	; 128
+ 9c6:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String("Wash Processing");
+ 9ca:	81 ef       	ldi	r24, 0xF1	; 241
+ 9cc:	90 e0       	ldi	r25, 0x00	; 0
+ 9ce:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ 9d2:	2f ef       	ldi	r18, 0xFF	; 255
+ 9d4:	81 ee       	ldi	r24, 0xE1	; 225
+ 9d6:	94 e0       	ldi	r25, 0x04	; 4
+ 9d8:	21 50       	subi	r18, 0x01	; 1
+ 9da:	80 40       	sbci	r24, 0x00	; 0
+ 9dc:	90 40       	sbci	r25, 0x00	; 0
+ 9de:	e1 f7       	brne	.-8      	; 0x9d8 <FruitMode+0xee>
+ 9e0:	00 c0       	rjmp	.+0      	; 0x9e2 <FruitMode+0xf8>
+ 9e2:	00 00       	nop
+	_delay_ms(200);
+	
+	for(int i=0; i<NoOfcycle; i++){
+ 9e4:	c0 e0       	ldi	r28, 0x00	; 0
+ 9e6:	d0 e0       	ldi	r29, 0x00	; 0
+ 9e8:	09 c0       	rjmp	.+18     	; 0x9fc <FruitMode+0x112>
+		WaterIn();
+ 9ea:	0e 94 c9 03 	call	0x792	; 0x792 <WaterIn>
+		NormalWashing(2); //3x7 cycle minimize to 3x5 //timer set to 15seconds wash time
+ 9ee:	82 e0       	ldi	r24, 0x02	; 2
+ 9f0:	90 e0       	ldi	r25, 0x00	; 0
+ 9f2:	0e 94 5f 03 	call	0x6be	; 0x6be <NormalWashing>
+		WaterDraining();
+ 9f6:	0e 94 aa 03 	call	0x754	; 0x754 <WaterDraining>
+	LCD_cmd(0x01);
+	LCD_cmd(0x80);
+	LCD_Write_String("Wash Processing");
+	_delay_ms(200);
+	
+	for(int i=0; i<NoOfcycle; i++){
+ 9fa:	21 96       	adiw	r28, 0x01	; 1
+ 9fc:	c2 30       	cpi	r28, 0x02	; 2
+ 9fe:	d1 05       	cpc	r29, r1
+ a00:	a4 f3       	brlt	.-24     	; 0x9ea <FruitMode+0x100>
+		WaterIn();
+		NormalWashing(2); //3x7 cycle minimize to 3x5 //timer set to 15seconds wash time
+		WaterDraining();
+	}
+}
+ a02:	df 91       	pop	r29
+ a04:	cf 91       	pop	r28
+ a06:	08 95       	ret
+
+00000a08 <Drying>:
+	return(temp);	
+
+	
+}
+
+void Drying(int dryT){
+ a08:	cf 93       	push	r28
+ a0a:	df 93       	push	r29
+ a0c:	ec 01       	movw	r28, r24
+	
+	LCD_cmd(0x01);
+ a0e:	81 e0       	ldi	r24, 0x01	; 1
+ a10:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ a14:	80 e8       	ldi	r24, 0x80	; 128
+ a16:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" WaterIn ");
+ a1a:	8e e0       	ldi	r24, 0x0E	; 14
+ a1c:	91 e0       	ldi	r25, 0x01	; 1
+ a1e:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ a22:	2f ef       	ldi	r18, 0xFF	; 255
+ a24:	81 ee       	ldi	r24, 0xE1	; 225
+ a26:	94 e0       	ldi	r25, 0x04	; 4
+ a28:	21 50       	subi	r18, 0x01	; 1
+ a2a:	80 40       	sbci	r24, 0x00	; 0
+ a2c:	90 40       	sbci	r25, 0x00	; 0
+ a2e:	e1 f7       	brne	.-8      	; 0xa28 <Drying+0x20>
+ a30:	00 c0       	rjmp	.+0      	; 0xa32 <Drying+0x2a>
+ a32:	00 00       	nop
+	_delay_ms(200);
+	WaterIn();
+ a34:	0e 94 c9 03 	call	0x792	; 0x792 <WaterIn>
+	LCD_cmd(0x01);
+ a38:	81 e0       	ldi	r24, 0x01	; 1
+ a3a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ a3e:	80 e8       	ldi	r24, 0x80	; 128
+ a40:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Drying... ");
+ a44:	88 e1       	ldi	r24, 0x18	; 24
+ a46:	91 e0       	ldi	r25, 0x01	; 1
+ a48:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ a4c:	2f ef       	ldi	r18, 0xFF	; 255
+ a4e:	81 ee       	ldi	r24, 0xE1	; 225
+ a50:	94 e0       	ldi	r25, 0x04	; 4
+ a52:	21 50       	subi	r18, 0x01	; 1
+ a54:	80 40       	sbci	r24, 0x00	; 0
+ a56:	90 40       	sbci	r25, 0x00	; 0
+ a58:	e1 f7       	brne	.-8      	; 0xa52 <Drying+0x4a>
+ a5a:	00 c0       	rjmp	.+0      	; 0xa5c <Drying+0x54>
+ a5c:	00 00       	nop
+ a5e:	02 c0       	rjmp	.+4      	; 0xa64 <Drying+0x5c>
+	_delay_ms(200);
+	
+	
+	while (GetTemp()<dryT){
+		
+		PORTC = (1<<Relay02);; //Turn On Relay //Turn on Heater
+ a60:	82 e0       	ldi	r24, 0x02	; 2
+ a62:	85 bb       	out	0x15, r24	; 21
+	LCD_cmd(0x80);
+	LCD_Write_String(" Drying... ");
+	_delay_ms(200);
+	
+	
+	while (GetTemp()<dryT){
+ a64:	0e 94 87 02 	call	0x50e	; 0x50e <GetTemp>
+ a68:	8c 17       	cp	r24, r28
+ a6a:	9d 07       	cpc	r25, r29
+ a6c:	cc f3       	brlt	.-14     	; 0xa60 <Drying+0x58>
+		
+		PORTC = (1<<Relay02);; //Turn On Relay //Turn on Heater
+	}
+	
+	if (GetTemp()<=dryT+5 && GetTemp()>=dryT-5){
+ a6e:	0e 94 87 02 	call	0x50e	; 0x50e <GetTemp>
+ a72:	9e 01       	movw	r18, r28
+ a74:	2b 5f       	subi	r18, 0xFB	; 251
+ a76:	3f 4f       	sbci	r19, 0xFF	; 255
+ a78:	28 17       	cp	r18, r24
+ a7a:	39 07       	cpc	r19, r25
+ a7c:	44 f0       	brlt	.+16     	; 0xa8e <Drying+0x86>
+ a7e:	0e 94 87 02 	call	0x50e	; 0x50e <GetTemp>
+ a82:	25 97       	sbiw	r28, 0x05	; 5
+ a84:	8c 17       	cp	r24, r28
+ a86:	9d 07       	cpc	r25, r29
+ a88:	14 f0       	brlt	.+4      	; 0xa8e <Drying+0x86>
+		PORTC = (1<<Relay02);; //Turn Off Relay //Turn Off Heater
+ a8a:	82 e0       	ldi	r24, 0x02	; 2
+ a8c:	85 bb       	out	0x15, r24	; 21
+	}
+	LCD_cmd(0x01);
+ a8e:	81 e0       	ldi	r24, 0x01	; 1
+ a90:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_cmd(0x80);
+ a94:	80 e8       	ldi	r24, 0x80	; 128
+ a96:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Drying Finished ");
+ a9a:	84 e2       	ldi	r24, 0x24	; 36
+ a9c:	91 e0       	ldi	r25, 0x01	; 1
+ a9e:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ aa2:	2f ef       	ldi	r18, 0xFF	; 255
+ aa4:	81 ee       	ldi	r24, 0xE1	; 225
+ aa6:	94 e0       	ldi	r25, 0x04	; 4
+ aa8:	21 50       	subi	r18, 0x01	; 1
+ aaa:	80 40       	sbci	r24, 0x00	; 0
+ aac:	90 40       	sbci	r25, 0x00	; 0
+ aae:	e1 f7       	brne	.-8      	; 0xaa8 <Drying+0xa0>
+ ab0:	00 c0       	rjmp	.+0      	; 0xab2 <Drying+0xaa>
+ ab2:	00 00       	nop
+	_delay_ms(200);
+}
+ ab4:	df 91       	pop	r29
+ ab6:	cf 91       	pop	r28
+ ab8:	08 95       	ret
+
+00000aba <NormalMode>:
+		    LCD_cmd(0x01);
+	    }
+	    return 0;
+}
+
+void NormalMode(){
+ aba:	cf 93       	push	r28
+ abc:	df 93       	push	r29
+
+		LCD_cmd(0x80);
+ abe:	80 e8       	ldi	r24, 0x80	; 128
+ ac0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Normal Mode ");
+ ac4:	86 e3       	ldi	r24, 0x36	; 54
+ ac6:	91 e0       	ldi	r25, 0x01	; 1
+ ac8:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+		LCD_cmd(0xC0);
+ acc:	80 ec       	ldi	r24, 0xC0	; 192
+ ace:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Enabled ");
+ ad2:	86 ec       	ldi	r24, 0xC6	; 198
+ ad4:	90 e0       	ldi	r25, 0x00	; 0
+ ad6:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ ada:	2f ef       	ldi	r18, 0xFF	; 255
+ adc:	84 e3       	ldi	r24, 0x34	; 52
+ ade:	9c e0       	ldi	r25, 0x0C	; 12
+ ae0:	21 50       	subi	r18, 0x01	; 1
+ ae2:	80 40       	sbci	r24, 0x00	; 0
+ ae4:	90 40       	sbci	r25, 0x00	; 0
+ ae6:	e1 f7       	brne	.-8      	; 0xae0 <NormalMode+0x26>
+ ae8:	00 c0       	rjmp	.+0      	; 0xaea <NormalMode+0x30>
+ aea:	00 00       	nop
+		int NoOfcycle=4;
+		int washTemp=60;
+		int dryTemp=80;
+		
+	
+		while (GetWaterLevel()==0){
+ aec:	28 c0       	rjmp	.+80     	; 0xb3e <NormalMode+0x84>
+			LCD_cmd(0x01);
+ aee:	81 e0       	ldi	r24, 0x01	; 1
+ af0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+			LCD_cmd(0x80);
+ af4:	80 e8       	ldi	r24, 0x80	; 128
+ af6:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+			LCD_Write_String(" Water Lvl Low ");
+ afa:	80 ed       	ldi	r24, 0xD0	; 208
+ afc:	90 e0       	ldi	r25, 0x00	; 0
+ afe:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ b02:	2f ef       	ldi	r18, 0xFF	; 255
+ b04:	84 e3       	ldi	r24, 0x34	; 52
+ b06:	9c e0       	ldi	r25, 0x0C	; 12
+ b08:	21 50       	subi	r18, 0x01	; 1
+ b0a:	80 40       	sbci	r24, 0x00	; 0
+ b0c:	90 40       	sbci	r25, 0x00	; 0
+ b0e:	e1 f7       	brne	.-8      	; 0xb08 <NormalMode+0x4e>
+ b10:	00 c0       	rjmp	.+0      	; 0xb12 <NormalMode+0x58>
+ b12:	00 00       	nop
+			_delay_ms(500);
+			LCD_cmd(0xC0);
+ b14:	80 ec       	ldi	r24, 0xC0	; 192
+ b16:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+			LCD_Write_String(" Water In... ");
+ b1a:	8c ea       	ldi	r24, 0xAC	; 172
+ b1c:	90 e0       	ldi	r25, 0x00	; 0
+ b1e:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+			
+			WaterIn();
+ b22:	0e 94 c9 03 	call	0x792	; 0x792 <WaterIn>
+ b26:	2f ef       	ldi	r18, 0xFF	; 255
+ b28:	84 e3       	ldi	r24, 0x34	; 52
+ b2a:	9c e0       	ldi	r25, 0x0C	; 12
+ b2c:	21 50       	subi	r18, 0x01	; 1
+ b2e:	80 40       	sbci	r24, 0x00	; 0
+ b30:	90 40       	sbci	r25, 0x00	; 0
+ b32:	e1 f7       	brne	.-8      	; 0xb2c <NormalMode+0x72>
+ b34:	00 c0       	rjmp	.+0      	; 0xb36 <NormalMode+0x7c>
+ b36:	00 00       	nop
+			_delay_ms(500);
+			LCD_cmd(0x01);
+ b38:	81 e0       	ldi	r24, 0x01	; 1
+ b3a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		int NoOfcycle=4;
+		int washTemp=60;
+		int dryTemp=80;
+		
+	
+		while (GetWaterLevel()==0){
+ b3e:	0e 94 7f 02 	call	0x4fe	; 0x4fe <GetWaterLevel>
+ b42:	89 2b       	or	r24, r25
+ b44:	a1 f2       	breq	.-88     	; 0xaee <NormalMode+0x34>
+			WaterIn();
+			_delay_ms(500);
+			LCD_cmd(0x01);
+		}
+		
+		LCD_cmd(0x01);
+ b46:	81 e0       	ldi	r24, 0x01	; 1
+ b48:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_cmd(0x80);
+ b4c:	80 e8       	ldi	r24, 0x80	; 128
+ b4e:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Water Lvl High ");
+ b52:	80 ee       	ldi	r24, 0xE0	; 224
+ b54:	90 e0       	ldi	r25, 0x00	; 0
+ b56:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ b5a:	2f ef       	ldi	r18, 0xFF	; 255
+ b5c:	81 ee       	ldi	r24, 0xE1	; 225
+ b5e:	94 e0       	ldi	r25, 0x04	; 4
+ b60:	21 50       	subi	r18, 0x01	; 1
+ b62:	80 40       	sbci	r24, 0x00	; 0
+ b64:	90 40       	sbci	r25, 0x00	; 0
+ b66:	e1 f7       	brne	.-8      	; 0xb60 <NormalMode+0xa6>
+ b68:	00 c0       	rjmp	.+0      	; 0xb6a <NormalMode+0xb0>
+ b6a:	00 00       	nop
+		_delay_ms(200);
+		LCD_cmd(0x01);
+ b6c:	81 e0       	ldi	r24, 0x01	; 1
+ b6e:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_cmd(0x80);
+ b72:	80 e8       	ldi	r24, 0x80	; 128
+ b74:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String("Wash Processing");
+ b78:	81 ef       	ldi	r24, 0xF1	; 241
+ b7a:	90 e0       	ldi	r25, 0x00	; 0
+ b7c:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ b80:	2f ef       	ldi	r18, 0xFF	; 255
+ b82:	81 ee       	ldi	r24, 0xE1	; 225
+ b84:	94 e0       	ldi	r25, 0x04	; 4
+ b86:	21 50       	subi	r18, 0x01	; 1
+ b88:	80 40       	sbci	r24, 0x00	; 0
+ b8a:	90 40       	sbci	r25, 0x00	; 0
+ b8c:	e1 f7       	brne	.-8      	; 0xb86 <NormalMode+0xcc>
+ b8e:	00 c0       	rjmp	.+0      	; 0xb90 <NormalMode+0xd6>
+ b90:	00 00       	nop
+		_delay_ms(200);
+		
+		HotWaterWashing(washTemp,2);
+ b92:	62 e0       	ldi	r22, 0x02	; 2
+ b94:	70 e0       	ldi	r23, 0x00	; 0
+ b96:	8c e3       	ldi	r24, 0x3C	; 60
+ b98:	90 e0       	ldi	r25, 0x00	; 0
+ b9a:	0e 94 c6 02 	call	0x58c	; 0x58c <HotWaterWashing>
+ b9e:	2f ef       	ldi	r18, 0xFF	; 255
+ ba0:	81 ee       	ldi	r24, 0xE1	; 225
+ ba2:	94 e0       	ldi	r25, 0x04	; 4
+ ba4:	21 50       	subi	r18, 0x01	; 1
+ ba6:	80 40       	sbci	r24, 0x00	; 0
+ ba8:	90 40       	sbci	r25, 0x00	; 0
+ baa:	e1 f7       	brne	.-8      	; 0xba4 <NormalMode+0xea>
+ bac:	00 c0       	rjmp	.+0      	; 0xbae <NormalMode+0xf4>
+ bae:	00 00       	nop
+		_delay_ms(200);
+		WaterDraining();
+ bb0:	0e 94 aa 03 	call	0x754	; 0x754 <WaterDraining>
+		
+		for(int i=0; i<NoOfcycle; i++){
+ bb4:	c0 e0       	ldi	r28, 0x00	; 0
+ bb6:	d0 e0       	ldi	r29, 0x00	; 0
+ bb8:	09 c0       	rjmp	.+18     	; 0xbcc <NormalMode+0x112>
+			WaterIn();
+ bba:	0e 94 c9 03 	call	0x792	; 0x792 <WaterIn>
+			NormalWashing(2); //3x7 cycle minimize to 3x5 //timer set to 15seconds wash time
+ bbe:	82 e0       	ldi	r24, 0x02	; 2
+ bc0:	90 e0       	ldi	r25, 0x00	; 0
+ bc2:	0e 94 5f 03 	call	0x6be	; 0x6be <NormalWashing>
+			WaterDraining();
+ bc6:	0e 94 aa 03 	call	0x754	; 0x754 <WaterDraining>
+		
+		HotWaterWashing(washTemp,2);
+		_delay_ms(200);
+		WaterDraining();
+		
+		for(int i=0; i<NoOfcycle; i++){
+ bca:	21 96       	adiw	r28, 0x01	; 1
+ bcc:	c4 30       	cpi	r28, 0x04	; 4
+ bce:	d1 05       	cpc	r29, r1
+ bd0:	a4 f3       	brlt	.-24     	; 0xbba <NormalMode+0x100>
+			WaterIn();
+			NormalWashing(2); //3x7 cycle minimize to 3x5 //timer set to 15seconds wash time
+			WaterDraining();
+		}
+		
+		Drying(dryTemp);
+ bd2:	80 e5       	ldi	r24, 0x50	; 80
+ bd4:	90 e0       	ldi	r25, 0x00	; 0
+ bd6:	0e 94 04 05 	call	0xa08	; 0xa08 <Drying>
+ bda:	2f ef       	ldi	r18, 0xFF	; 255
+ bdc:	81 ee       	ldi	r24, 0xE1	; 225
+ bde:	94 e0       	ldi	r25, 0x04	; 4
+ be0:	21 50       	subi	r18, 0x01	; 1
+ be2:	80 40       	sbci	r24, 0x00	; 0
+ be4:	90 40       	sbci	r25, 0x00	; 0
+ be6:	e1 f7       	brne	.-8      	; 0xbe0 <NormalMode+0x126>
+ be8:	00 c0       	rjmp	.+0      	; 0xbea <NormalMode+0x130>
+ bea:	00 00       	nop
+		_delay_ms(200);
+		WaterDraining();
+ bec:	0e 94 aa 03 	call	0x754	; 0x754 <WaterDraining>
+ bf0:	2f ef       	ldi	r18, 0xFF	; 255
+ bf2:	81 ee       	ldi	r24, 0xE1	; 225
+ bf4:	94 e0       	ldi	r25, 0x04	; 4
+ bf6:	21 50       	subi	r18, 0x01	; 1
+ bf8:	80 40       	sbci	r24, 0x00	; 0
+ bfa:	90 40       	sbci	r25, 0x00	; 0
+ bfc:	e1 f7       	brne	.-8      	; 0xbf6 <NormalMode+0x13c>
+ bfe:	00 c0       	rjmp	.+0      	; 0xc00 <NormalMode+0x146>
+ c00:	00 00       	nop
+		_delay_ms(200);
+}
+ c02:	df 91       	pop	r29
+ c04:	cf 91       	pop	r28
+ c06:	08 95       	ret
+
+00000c08 <LongMode>:
+
+void LongMode(){
+ c08:	cf 93       	push	r28
+ c0a:	df 93       	push	r29
+
+	LCD_cmd(0x80);
+ c0c:	80 e8       	ldi	r24, 0x80	; 128
+ c0e:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Long Mode ");
+ c12:	84 e4       	ldi	r24, 0x44	; 68
+ c14:	91 e0       	ldi	r25, 0x01	; 1
+ c16:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+	LCD_cmd(0xC0);
+ c1a:	80 ec       	ldi	r24, 0xC0	; 192
+ c1c:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	LCD_Write_String(" Enabled ");
+ c20:	86 ec       	ldi	r24, 0xC6	; 198
+ c22:	90 e0       	ldi	r25, 0x00	; 0
+ c24:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ c28:	2f ef       	ldi	r18, 0xFF	; 255
+ c2a:	84 e3       	ldi	r24, 0x34	; 52
+ c2c:	9c e0       	ldi	r25, 0x0C	; 12
+ c2e:	21 50       	subi	r18, 0x01	; 1
+ c30:	80 40       	sbci	r24, 0x00	; 0
+ c32:	90 40       	sbci	r25, 0x00	; 0
+ c34:	e1 f7       	brne	.-8      	; 0xc2e <LongMode+0x26>
+ c36:	00 c0       	rjmp	.+0      	; 0xc38 <LongMode+0x30>
+ c38:	00 00       	nop
+	//Wash Time = 15 seconds for each cycle
+	int NoOfcycle=6;
+	int washTemp=60;
+	int dryTemp=80;
+	
+	while (GetWaterLevel()==0){
+ c3a:	31 c0       	rjmp	.+98     	; 0xc9e <LongMode+0x96>
+		
+		LCD_cmd(0x01);
+ c3c:	81 e0       	ldi	r24, 0x01	; 1
+ c3e:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_cmd(0x80);
+ c42:	80 e8       	ldi	r24, 0x80	; 128
+ c44:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Water Lvl Low ");
+ c48:	80 ed       	ldi	r24, 0xD0	; 208
+ c4a:	90 e0       	ldi	r25, 0x00	; 0
+ c4c:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ c50:	2f ef       	ldi	r18, 0xFF	; 255
+ c52:	81 ee       	ldi	r24, 0xE1	; 225
+ c54:	94 e0       	ldi	r25, 0x04	; 4
+ c56:	21 50       	subi	r18, 0x01	; 1
+ c58:	80 40       	sbci	r24, 0x00	; 0
+ c5a:	90 40       	sbci	r25, 0x00	; 0
+ c5c:	e1 f7       	brne	.-8      	; 0xc56 <LongMode+0x4e>
+ c5e:	00 c0       	rjmp	.+0      	; 0xc60 <LongMode+0x58>
+ c60:	00 00       	nop
+		_delay_ms(200);
+		LCD_cmd(0xC0);
+ c62:	80 ec       	ldi	r24, 0xC0	; 192
+ c64:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Water In... ");
+ c68:	8c ea       	ldi	r24, 0xAC	; 172
+ c6a:	90 e0       	ldi	r25, 0x00	; 0
+ c6c:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ c70:	2f ef       	ldi	r18, 0xFF	; 255
+ c72:	81 ee       	ldi	r24, 0xE1	; 225
+ c74:	94 e0       	ldi	r25, 0x04	; 4
+ c76:	21 50       	subi	r18, 0x01	; 1
+ c78:	80 40       	sbci	r24, 0x00	; 0
+ c7a:	90 40       	sbci	r25, 0x00	; 0
+ c7c:	e1 f7       	brne	.-8      	; 0xc76 <LongMode+0x6e>
+ c7e:	00 c0       	rjmp	.+0      	; 0xc80 <LongMode+0x78>
+ c80:	00 00       	nop
+		_delay_ms(200);
+		
+		WaterIn();
+ c82:	0e 94 c9 03 	call	0x792	; 0x792 <WaterIn>
+ c86:	2f ef       	ldi	r18, 0xFF	; 255
+ c88:	84 e3       	ldi	r24, 0x34	; 52
+ c8a:	9c e0       	ldi	r25, 0x0C	; 12
+ c8c:	21 50       	subi	r18, 0x01	; 1
+ c8e:	80 40       	sbci	r24, 0x00	; 0
+ c90:	90 40       	sbci	r25, 0x00	; 0
+ c92:	e1 f7       	brne	.-8      	; 0xc8c <LongMode+0x84>
+ c94:	00 c0       	rjmp	.+0      	; 0xc96 <LongMode+0x8e>
+ c96:	00 00       	nop
+		_delay_ms(500);
+		LCD_cmd(0x01);
+ c98:	81 e0       	ldi	r24, 0x01	; 1
+ c9a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+	//Wash Time = 15 seconds for each cycle
+	int NoOfcycle=6;
+	int washTemp=60;
+	int dryTemp=80;
+	
+	while (GetWaterLevel()==0){
+ c9e:	0e 94 7f 02 	call	0x4fe	; 0x4fe <GetWaterLevel>
+ ca2:	89 2b       	or	r24, r25
+ ca4:	59 f2       	breq	.-106    	; 0xc3c <LongMode+0x34>
+		_delay_ms(500);
+		LCD_cmd(0x01);
+		
+	}
+		
+		LCD_cmd(0x01);
+ ca6:	81 e0       	ldi	r24, 0x01	; 1
+ ca8:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_cmd(0x80);
+ cac:	80 e8       	ldi	r24, 0x80	; 128
+ cae:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String(" Water Lvl High ");
+ cb2:	80 ee       	ldi	r24, 0xE0	; 224
+ cb4:	90 e0       	ldi	r25, 0x00	; 0
+ cb6:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ cba:	2f ef       	ldi	r18, 0xFF	; 255
+ cbc:	81 ee       	ldi	r24, 0xE1	; 225
+ cbe:	94 e0       	ldi	r25, 0x04	; 4
+ cc0:	21 50       	subi	r18, 0x01	; 1
+ cc2:	80 40       	sbci	r24, 0x00	; 0
+ cc4:	90 40       	sbci	r25, 0x00	; 0
+ cc6:	e1 f7       	brne	.-8      	; 0xcc0 <LongMode+0xb8>
+ cc8:	00 c0       	rjmp	.+0      	; 0xcca <LongMode+0xc2>
+ cca:	00 00       	nop
+		_delay_ms(200);
+		LCD_cmd(0x01);
+ ccc:	81 e0       	ldi	r24, 0x01	; 1
+ cce:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_cmd(0x80);
+ cd2:	80 e8       	ldi	r24, 0x80	; 128
+ cd4:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+		LCD_Write_String("Wash Processing");
+ cd8:	81 ef       	ldi	r24, 0xF1	; 241
+ cda:	90 e0       	ldi	r25, 0x00	; 0
+ cdc:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ ce0:	2f ef       	ldi	r18, 0xFF	; 255
+ ce2:	81 ee       	ldi	r24, 0xE1	; 225
+ ce4:	94 e0       	ldi	r25, 0x04	; 4
+ ce6:	21 50       	subi	r18, 0x01	; 1
+ ce8:	80 40       	sbci	r24, 0x00	; 0
+ cea:	90 40       	sbci	r25, 0x00	; 0
+ cec:	e1 f7       	brne	.-8      	; 0xce6 <LongMode+0xde>
+ cee:	00 c0       	rjmp	.+0      	; 0xcf0 <LongMode+0xe8>
+ cf0:	00 00       	nop
+		_delay_ms(200);
+		
+		HotWaterWashing(washTemp,2);
+ cf2:	62 e0       	ldi	r22, 0x02	; 2
+ cf4:	70 e0       	ldi	r23, 0x00	; 0
+ cf6:	8c e3       	ldi	r24, 0x3C	; 60
+ cf8:	90 e0       	ldi	r25, 0x00	; 0
+ cfa:	0e 94 c6 02 	call	0x58c	; 0x58c <HotWaterWashing>
+ cfe:	2f ef       	ldi	r18, 0xFF	; 255
+ d00:	84 e3       	ldi	r24, 0x34	; 52
+ d02:	9c e0       	ldi	r25, 0x0C	; 12
+ d04:	21 50       	subi	r18, 0x01	; 1
+ d06:	80 40       	sbci	r24, 0x00	; 0
+ d08:	90 40       	sbci	r25, 0x00	; 0
+ d0a:	e1 f7       	brne	.-8      	; 0xd04 <LongMode+0xfc>
+ d0c:	00 c0       	rjmp	.+0      	; 0xd0e <LongMode+0x106>
+ d0e:	00 00       	nop
+		_delay_ms(500);
+		
+		for(int i=0; i<NoOfcycle; i++){
+ d10:	c0 e0       	ldi	r28, 0x00	; 0
+ d12:	d0 e0       	ldi	r29, 0x00	; 0
+ d14:	09 c0       	rjmp	.+18     	; 0xd28 <LongMode+0x120>
+			WaterIn();
+ d16:	0e 94 c9 03 	call	0x792	; 0x792 <WaterIn>
+			NormalWashing(2); //3x7 cycle minimize to 3x5 //timer set to 15seconds wash time
+ d1a:	82 e0       	ldi	r24, 0x02	; 2
+ d1c:	90 e0       	ldi	r25, 0x00	; 0
+ d1e:	0e 94 5f 03 	call	0x6be	; 0x6be <NormalWashing>
+			WaterDraining();
+ d22:	0e 94 aa 03 	call	0x754	; 0x754 <WaterDraining>
+		_delay_ms(200);
+		
+		HotWaterWashing(washTemp,2);
+		_delay_ms(500);
+		
+		for(int i=0; i<NoOfcycle; i++){
+ d26:	21 96       	adiw	r28, 0x01	; 1
+ d28:	c6 30       	cpi	r28, 0x06	; 6
+ d2a:	d1 05       	cpc	r29, r1
+ d2c:	a4 f3       	brlt	.-24     	; 0xd16 <LongMode+0x10e>
+			WaterIn();
+			NormalWashing(2); //3x7 cycle minimize to 3x5 //timer set to 15seconds wash time
+			WaterDraining();
+		}
+	
+	Drying(dryTemp);
+ d2e:	80 e5       	ldi	r24, 0x50	; 80
+ d30:	90 e0       	ldi	r25, 0x00	; 0
+ d32:	0e 94 04 05 	call	0xa08	; 0xa08 <Drying>
+ d36:	2f ef       	ldi	r18, 0xFF	; 255
+ d38:	81 ee       	ldi	r24, 0xE1	; 225
+ d3a:	94 e0       	ldi	r25, 0x04	; 4
+ d3c:	21 50       	subi	r18, 0x01	; 1
+ d3e:	80 40       	sbci	r24, 0x00	; 0
+ d40:	90 40       	sbci	r25, 0x00	; 0
+ d42:	e1 f7       	brne	.-8      	; 0xd3c <LongMode+0x134>
+ d44:	00 c0       	rjmp	.+0      	; 0xd46 <LongMode+0x13e>
+ d46:	00 00       	nop
+	_delay_ms(200);
+	WaterDraining();
+ d48:	0e 94 aa 03 	call	0x754	; 0x754 <WaterDraining>
+ d4c:	2f ef       	ldi	r18, 0xFF	; 255
+ d4e:	81 ee       	ldi	r24, 0xE1	; 225
+ d50:	94 e0       	ldi	r25, 0x04	; 4
+ d52:	21 50       	subi	r18, 0x01	; 1
+ d54:	80 40       	sbci	r24, 0x00	; 0
+ d56:	90 40       	sbci	r25, 0x00	; 0
+ d58:	e1 f7       	brne	.-8      	; 0xd52 <LongMode+0x14a>
+ d5a:	00 c0       	rjmp	.+0      	; 0xd5c <LongMode+0x154>
+ d5c:	00 00       	nop
+	_delay_ms(200);
+}
+ d5e:	df 91       	pop	r29
+ d60:	cf 91       	pop	r28
+ d62:	08 95       	ret
+
+00000d64 <main>:
+int extraTime=0;
+
+
+int main(void)
+{
+	DDRC = 0xFF;
+ d64:	8f ef       	ldi	r24, 0xFF	; 255
+ d66:	84 bb       	out	0x14, r24	; 20
+	DDRA = 0x00;
+ d68:	1a ba       	out	0x1a, r1	; 26
+	DDRD = 0x00;
+ d6a:	11 ba       	out	0x11, r1	; 17
+	
+    while(1)
+    {
+	    LCD_Set();
+ d6c:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <LCD_Set>
+		    
+		    while(1)
+		    {
+				LCD_Write_String("Enter a mode");
+ d70:	80 e5       	ldi	r24, 0x50	; 80
+ d72:	91 e0       	ldi	r25, 0x01	; 1
+ d74:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+				LCD_cmd(0xC0);
+ d78:	80 ec       	ldi	r24, 0xC0	; 192
+ d7a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <LCD_cmd>
+				
+			    char test = keyfind();
+ d7e:	0e 94 ef 01 	call	0x3de	; 0x3de <keyfind>
+ d82:	c8 2f       	mov	r28, r24
+				
+			    LCD_write(test);
+ d84:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+			    switch(test){
+ d88:	c2 33       	cpi	r28, 0x32	; 50
+ d8a:	61 f0       	breq	.+24     	; 0xda4 <main+0x40>
+ d8c:	18 f4       	brcc	.+6      	; 0xd94 <main+0x30>
+ d8e:	c1 33       	cpi	r28, 0x31	; 49
+ d90:	31 f0       	breq	.+12     	; 0xd9e <main+0x3a>
+ d92:	11 c0       	rjmp	.+34     	; 0xdb6 <main+0x52>
+ d94:	c3 33       	cpi	r28, 0x33	; 51
+ d96:	49 f0       	breq	.+18     	; 0xdaa <main+0x46>
+ d98:	c4 33       	cpi	r28, 0x34	; 52
+ d9a:	51 f0       	breq	.+20     	; 0xdb0 <main+0x4c>
+ d9c:	0c c0       	rjmp	.+24     	; 0xdb6 <main+0x52>
+				    case '1':
+						NormalMode();
+ d9e:	0e 94 5d 05 	call	0xaba	; 0xaba <NormalMode>
+						break;
+ da2:	e6 cf       	rjmp	.-52     	; 0xd70 <main+0xc>
+				    case '2':
+						LongMode();
+ da4:	0e 94 04 06 	call	0xc08	; 0xc08 <LongMode>
+						break;
+ da8:	e3 cf       	rjmp	.-58     	; 0xd70 <main+0xc>
+				    case '3':
+						FastMode();
+ daa:	0e 94 e5 03 	call	0x7ca	; 0x7ca <FastMode>
+						break;
+ dae:	e0 cf       	rjmp	.-64     	; 0xd70 <main+0xc>
+				    case '4':
+						FruitMode();
+ db0:	0e 94 75 04 	call	0x8ea	; 0x8ea <FruitMode>
+						break;
+ db4:	dd cf       	rjmp	.-70     	; 0xd70 <main+0xc>
+				    default:
+				    LCD_Write_String(" Wrong input");
+ db6:	8d e5       	ldi	r24, 0x5D	; 93
+ db8:	91 e0       	ldi	r25, 0x01	; 1
+ dba:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_Write_String>
+ dbe:	d8 cf       	rjmp	.-80     	; 0xd70 <main+0xc>
+
+00000dc0 <__vector_7>:
+	}
+	PORTC= (0<<Relay03);; //Turn Off Relay03
+
+}
+
+ISR(TIMER1_COMPA_vect){
+ dc0:	1f 92       	push	r1
+ dc2:	0f 92       	push	r0
+ dc4:	0f b6       	in	r0, 0x3f	; 63
+ dc6:	0f 92       	push	r0
+ dc8:	11 24       	eor	r1, r1
+ dca:	8f 93       	push	r24
+ dcc:	9f 93       	push	r25
+	
+	extraTime++;
+ dce:	80 91 6a 01 	lds	r24, 0x016A	; 0x80016a <__data_end>
+ dd2:	90 91 6b 01 	lds	r25, 0x016B	; 0x80016b <__data_end+0x1>
+ dd6:	01 96       	adiw	r24, 0x01	; 1
+ dd8:	90 93 6b 01 	sts	0x016B, r25	; 0x80016b <__data_end+0x1>
+ ddc:	80 93 6a 01 	sts	0x016A, r24	; 0x80016a <__data_end>
+	if (extraTime>6){
+ de0:	07 97       	sbiw	r24, 0x07	; 7
+ de2:	2c f0       	brlt	.+10     	; 0xdee <__vector_7+0x2e>
+		extraTime=0;
+ de4:	10 92 6b 01 	sts	0x016B, r1	; 0x80016b <__data_end+0x1>
+ de8:	10 92 6a 01 	sts	0x016A, r1	; 0x80016a <__data_end>
+		PORTC = (0<<Relay01);; //Turn Off Relay //Turn Off Wash Pump after washing
+ dec:	15 ba       	out	0x15, r1	; 21
+	}
+}
+ dee:	9f 91       	pop	r25
+ df0:	8f 91       	pop	r24
+ df2:	0f 90       	pop	r0
+ df4:	0f be       	out	0x3f, r0	; 63
+ df6:	0f 90       	pop	r0
+ df8:	1f 90       	pop	r1
+ dfa:	18 95       	reti
+
+00000dfc <onewireInit>:
+#include <inttypes.h>
+#include "onewire.h"
+
+//! Initializes 1wire bus before transmission
+uint8_t onewireInit( volatile uint8_t *port, volatile uint8_t *direction, volatile uint8_t *portin, uint8_t mask )
+{
+ dfc:	cf 93       	push	r28
+ dfe:	df 93       	push	r29
+ e00:	dc 01       	movw	r26, r24
+ e02:	fb 01       	movw	r30, r22
+	uint8_t response = 0;
+	uint8_t sreg = SREG; //Store status register
+ e04:	3f b7       	in	r19, 0x3f	; 63
+
+	#ifdef ONEWIRE_AUTO_CLI
+		cli( );
+	#endif
+
+	*port |= mask; //Write 1 to output
+ e06:	8c 91       	ld	r24, X
+ e08:	82 2b       	or	r24, r18
+ e0a:	8c 93       	st	X, r24
+	*direction |= mask; //Set port to output
+ e0c:	80 81       	ld	r24, Z
+ e0e:	82 2b       	or	r24, r18
+ e10:	80 83       	st	Z, r24
+	*port &= ~mask; //Write 0 to output
+ e12:	9c 91       	ld	r25, X
+ e14:	82 2f       	mov	r24, r18
+ e16:	80 95       	com	r24
+ e18:	98 23       	and	r25, r24
+ e1a:	9c 93       	st	X, r25
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ e1c:	98 ec       	ldi	r25, 0xC8	; 200
+ e1e:	9a 95       	dec	r25
+ e20:	f1 f7       	brne	.-4      	; 0xe1e <onewireInit+0x22>
+
+	_delay_us( 600 );
+
+	*direction &= ~mask; //Set port to input
+ e22:	90 81       	ld	r25, Z
+ e24:	89 23       	and	r24, r25
+ e26:	80 83       	st	Z, r24
+ e28:	c7 e1       	ldi	r28, 0x17	; 23
+ e2a:	ca 95       	dec	r28
+ e2c:	f1 f7       	brne	.-4      	; 0xe2a <onewireInit+0x2e>
+ e2e:	00 00       	nop
+
+	_delay_us( 70 );
+
+	response = *portin & mask; //Read input
+ e30:	ea 01       	movw	r28, r20
+ e32:	98 81       	ld	r25, Y
+ e34:	92 23       	and	r25, r18
+ e36:	d2 e4       	ldi	r29, 0x42	; 66
+ e38:	da 95       	dec	r29
+ e3a:	f1 f7       	brne	.-4      	; 0xe38 <onewireInit+0x3c>
+ e3c:	00 c0       	rjmp	.+0      	; 0xe3e <onewireInit+0x42>
+
+	_delay_us( 200 );
+
+	*port |= mask; //Write 1 to output
+ e3e:	8c 91       	ld	r24, X
+ e40:	82 2b       	or	r24, r18
+ e42:	8c 93       	st	X, r24
+	*direction |= mask; //Set port to output
+ e44:	80 81       	ld	r24, Z
+ e46:	28 2b       	or	r18, r24
+ e48:	20 83       	st	Z, r18
+ e4a:	88 ec       	ldi	r24, 0xC8	; 200
+ e4c:	8a 95       	dec	r24
+ e4e:	f1 f7       	brne	.-4      	; 0xe4c <onewireInit+0x50>
+
+	_delay_us( 600 );
+
+	SREG = sreg; //Restore status register
+ e50:	3f bf       	out	0x3f, r19	; 63
+
+	return response != 0 ? ONEWIRE_ERROR_COMM : ONEWIRE_ERROR_OK;
+ e52:	81 e0       	ldi	r24, 0x01	; 1
+ e54:	91 11       	cpse	r25, r1
+ e56:	01 c0       	rjmp	.+2      	; 0xe5a <onewireInit+0x5e>
+ e58:	80 e0       	ldi	r24, 0x00	; 0
+}
+ e5a:	df 91       	pop	r29
+ e5c:	cf 91       	pop	r28
+ e5e:	08 95       	ret
+
+00000e60 <onewireWriteBit>:
+
+//! Sends a single bit over the 1wire bus
+uint8_t onewireWriteBit( volatile uint8_t *port, volatile uint8_t *direction, volatile uint8_t *portin, uint8_t mask, uint8_t bit )
+{
+ e60:	0f 93       	push	r16
+ e62:	fc 01       	movw	r30, r24
+	uint8_t sreg = SREG;
+ e64:	9f b7       	in	r25, 0x3f	; 63
+
+	#ifdef ONEWIRE_AUTO_CLI
+		cli( );
+	#endif
+
+	*port |= mask; //Write 1 to output
+ e66:	80 81       	ld	r24, Z
+ e68:	82 2b       	or	r24, r18
+ e6a:	80 83       	st	Z, r24
+	*direction |= mask;
+ e6c:	db 01       	movw	r26, r22
+ e6e:	8c 91       	ld	r24, X
+ e70:	82 2b       	or	r24, r18
+ e72:	8c 93       	st	X, r24
+	*port &= ~mask; //Write 0 to output
+ e74:	80 81       	ld	r24, Z
+ e76:	32 2f       	mov	r19, r18
+ e78:	30 95       	com	r19
+ e7a:	83 23       	and	r24, r19
+ e7c:	80 83       	st	Z, r24
+
+	if ( bit != 0 ) _delay_us( 8 );
+ e7e:	00 23       	and	r16, r16
+ e80:	29 f0       	breq	.+10     	; 0xe8c <onewireWriteBit+0x2c>
+ e82:	b2 e0       	ldi	r27, 0x02	; 2
+ e84:	ba 95       	dec	r27
+ e86:	f1 f7       	brne	.-4      	; 0xe84 <onewireWriteBit+0x24>
+ e88:	00 c0       	rjmp	.+0      	; 0xe8a <onewireWriteBit+0x2a>
+ e8a:	04 c0       	rjmp	.+8      	; 0xe94 <onewireWriteBit+0x34>
+ e8c:	8a e1       	ldi	r24, 0x1A	; 26
+ e8e:	8a 95       	dec	r24
+ e90:	f1 f7       	brne	.-4      	; 0xe8e <onewireWriteBit+0x2e>
+ e92:	00 c0       	rjmp	.+0      	; 0xe94 <onewireWriteBit+0x34>
+	else _delay_us( 80 );
+
+	*port |= mask;
+ e94:	80 81       	ld	r24, Z
+ e96:	28 2b       	or	r18, r24
+ e98:	20 83       	st	Z, r18
+
+	if ( bit != 0 ) _delay_us( 80 );
+ e9a:	00 23       	and	r16, r16
+ e9c:	29 f0       	breq	.+10     	; 0xea8 <onewireWriteBit+0x48>
+ e9e:	aa e1       	ldi	r26, 0x1A	; 26
+ ea0:	aa 95       	dec	r26
+ ea2:	f1 f7       	brne	.-4      	; 0xea0 <onewireWriteBit+0x40>
+ ea4:	00 c0       	rjmp	.+0      	; 0xea6 <onewireWriteBit+0x46>
+ ea6:	01 c0       	rjmp	.+2      	; 0xeaa <onewireWriteBit+0x4a>
+ ea8:	00 c0       	rjmp	.+0      	; 0xeaa <onewireWriteBit+0x4a>
+	else _delay_us( 2 );
+
+	SREG = sreg;
+ eaa:	9f bf       	out	0x3f, r25	; 63
+
+	return bit != 0;
+ eac:	81 e0       	ldi	r24, 0x01	; 1
+ eae:	01 11       	cpse	r16, r1
+ eb0:	01 c0       	rjmp	.+2      	; 0xeb4 <onewireWriteBit+0x54>
+ eb2:	80 e0       	ldi	r24, 0x00	; 0
+}
+ eb4:	0f 91       	pop	r16
+ eb6:	08 95       	ret
+
+00000eb8 <onewireWrite>:
+
+//! Transmits a byte over 1wire bus
+void onewireWrite( volatile uint8_t *port, volatile uint8_t *direction, volatile uint8_t *portin, uint8_t mask, uint8_t data )
+{
+ eb8:	9f 92       	push	r9
+ eba:	af 92       	push	r10
+ ebc:	bf 92       	push	r11
+ ebe:	cf 92       	push	r12
+ ec0:	df 92       	push	r13
+ ec2:	ef 92       	push	r14
+ ec4:	ff 92       	push	r15
+ ec6:	0f 93       	push	r16
+ ec8:	1f 93       	push	r17
+ eca:	cf 93       	push	r28
+ ecc:	df 93       	push	r29
+ ece:	5c 01       	movw	r10, r24
+ ed0:	6b 01       	movw	r12, r22
+ ed2:	7a 01       	movw	r14, r20
+ ed4:	12 2f       	mov	r17, r18
+ ed6:	d0 2f       	mov	r29, r16
+	uint8_t sreg = SREG; //Store status register
+ ed8:	9f b6       	in	r9, 0x3f	; 63
+
+	#ifdef ONEWIRE_AUTO_CLI
+		cli( );
+	#endif
+
+	for ( i = 1; i != 0; i <<= 1 ) //Write byte in 8 single bit writes
+ eda:	c1 e0       	ldi	r28, 0x01	; 1
+ edc:	09 c0       	rjmp	.+18     	; 0xef0 <onewireWrite+0x38>
+		onewireWriteBit( port, direction, portin, mask, data & i );
+ ede:	0c 2f       	mov	r16, r28
+ ee0:	0d 23       	and	r16, r29
+ ee2:	21 2f       	mov	r18, r17
+ ee4:	a7 01       	movw	r20, r14
+ ee6:	b6 01       	movw	r22, r12
+ ee8:	c5 01       	movw	r24, r10
+ eea:	0e 94 30 07 	call	0xe60	; 0xe60 <onewireWriteBit>
+
+	#ifdef ONEWIRE_AUTO_CLI
+		cli( );
+	#endif
+
+	for ( i = 1; i != 0; i <<= 1 ) //Write byte in 8 single bit writes
+ eee:	cc 0f       	add	r28, r28
+ ef0:	c1 11       	cpse	r28, r1
+ ef2:	f5 cf       	rjmp	.-22     	; 0xede <onewireWrite+0x26>
+		onewireWriteBit( port, direction, portin, mask, data & i );
+
+	SREG = sreg;
+ ef4:	9f be       	out	0x3f, r9	; 63
+}
+ ef6:	df 91       	pop	r29
+ ef8:	cf 91       	pop	r28
+ efa:	1f 91       	pop	r17
+ efc:	0f 91       	pop	r16
+ efe:	ff 90       	pop	r15
+ f00:	ef 90       	pop	r14
+ f02:	df 90       	pop	r13
+ f04:	cf 90       	pop	r12
+ f06:	bf 90       	pop	r11
+ f08:	af 90       	pop	r10
+ f0a:	9f 90       	pop	r9
+ f0c:	08 95       	ret
+
+00000f0e <onewireReadBit>:
+
+//! Reads a bit from the 1wire bus
+uint8_t onewireReadBit( volatile uint8_t *port, volatile uint8_t *direction, volatile uint8_t *portin, uint8_t mask )
+{
+ f0e:	dc 01       	movw	r26, r24
+ f10:	fb 01       	movw	r30, r22
+	uint8_t bit = 0;
+	uint8_t sreg = SREG;
+ f12:	3f b7       	in	r19, 0x3f	; 63
+
+	#ifdef ONEWIRE_AUTO_CLI
+		cli( );
+	#endif
+
+	*port |= mask; //Write 1 to output
+ f14:	8c 91       	ld	r24, X
+ f16:	82 2b       	or	r24, r18
+ f18:	8c 93       	st	X, r24
+	*direction |= mask;
+ f1a:	80 81       	ld	r24, Z
+ f1c:	82 2b       	or	r24, r18
+ f1e:	80 83       	st	Z, r24
+	*port &= ~mask; //Write 0 to output
+ f20:	8c 91       	ld	r24, X
+ f22:	92 2f       	mov	r25, r18
+ f24:	90 95       	com	r25
+ f26:	89 23       	and	r24, r25
+ f28:	8c 93       	st	X, r24
+ f2a:	00 c0       	rjmp	.+0      	; 0xf2c <onewireReadBit+0x1e>
+	_delay_us( 2 );
+	*direction &= ~mask; //Set port to input
+ f2c:	80 81       	ld	r24, Z
+ f2e:	98 23       	and	r25, r24
+ f30:	90 83       	st	Z, r25
+ f32:	00 c0       	rjmp	.+0      	; 0xf34 <onewireReadBit+0x26>
+ f34:	00 c0       	rjmp	.+0      	; 0xf36 <onewireReadBit+0x28>
+ f36:	00 00       	nop
+	_delay_us( 5 );
+	bit = ( ( *portin & mask ) != 0 ); //Read input
+ f38:	fa 01       	movw	r30, r20
+ f3a:	80 81       	ld	r24, Z
+ f3c:	28 23       	and	r18, r24
+ f3e:	81 e0       	ldi	r24, 0x01	; 1
+ f40:	09 f4       	brne	.+2      	; 0xf44 <onewireReadBit+0x36>
+ f42:	80 e0       	ldi	r24, 0x00	; 0
+ f44:	f4 e1       	ldi	r31, 0x14	; 20
+ f46:	fa 95       	dec	r31
+ f48:	f1 f7       	brne	.-4      	; 0xf46 <onewireReadBit+0x38>
+	_delay_us( 60 );
+	SREG = sreg;
+ f4a:	3f bf       	out	0x3f, r19	; 63
+
+	return bit;
+}
+ f4c:	08 95       	ret
+
+00000f4e <onewireRead>:
+
+//! Reads a byte from the 1wire bus
+uint8_t onewireRead( volatile uint8_t *port, volatile uint8_t *direction, volatile uint8_t *portin, uint8_t mask )
+{
+ f4e:	af 92       	push	r10
+ f50:	bf 92       	push	r11
+ f52:	cf 92       	push	r12
+ f54:	df 92       	push	r13
+ f56:	ef 92       	push	r14
+ f58:	ff 92       	push	r15
+ f5a:	0f 93       	push	r16
+ f5c:	1f 93       	push	r17
+ f5e:	cf 93       	push	r28
+ f60:	df 93       	push	r29
+ f62:	5c 01       	movw	r10, r24
+ f64:	6b 01       	movw	r12, r22
+ f66:	7a 01       	movw	r14, r20
+ f68:	12 2f       	mov	r17, r18
+	uint8_t sreg = SREG; //Store status register
+ f6a:	0f b7       	in	r16, 0x3f	; 63
+
+	#ifdef ONEWIRE_AUTO_CLI
+		cli( );
+	#endif
+
+	for ( i = 1; i != 0; i <<= 1 ) //Read byte in 8 single bit reads
+ f6c:	c1 e0       	ldi	r28, 0x01	; 1
+
+//! Reads a byte from the 1wire bus
+uint8_t onewireRead( volatile uint8_t *port, volatile uint8_t *direction, volatile uint8_t *portin, uint8_t mask )
+{
+	uint8_t sreg = SREG; //Store status register
+	uint8_t data = 0;
+ f6e:	d0 e0       	ldi	r29, 0x00	; 0
+
+	#ifdef ONEWIRE_AUTO_CLI
+		cli( );
+	#endif
+
+	for ( i = 1; i != 0; i <<= 1 ) //Read byte in 8 single bit reads
+ f70:	0b c0       	rjmp	.+22     	; 0xf88 <onewireRead+0x3a>
+		data |= onewireReadBit( port, direction, portin, mask ) * i;
+ f72:	21 2f       	mov	r18, r17
+ f74:	a7 01       	movw	r20, r14
+ f76:	b6 01       	movw	r22, r12
+ f78:	c5 01       	movw	r24, r10
+ f7a:	0e 94 87 07 	call	0xf0e	; 0xf0e <onewireReadBit>
+ f7e:	8c 9f       	mul	r24, r28
+ f80:	c0 01       	movw	r24, r0
+ f82:	11 24       	eor	r1, r1
+ f84:	d8 2b       	or	r29, r24
+
+	#ifdef ONEWIRE_AUTO_CLI
+		cli( );
+	#endif
+
+	for ( i = 1; i != 0; i <<= 1 ) //Read byte in 8 single bit reads
+ f86:	cc 0f       	add	r28, r28
+ f88:	c1 11       	cpse	r28, r1
+ f8a:	f3 cf       	rjmp	.-26     	; 0xf72 <onewireRead+0x24>
+		data |= onewireReadBit( port, direction, portin, mask ) * i;
+
+	SREG = sreg;
+ f8c:	0f bf       	out	0x3f, r16	; 63
+
+	return data;
+}
+ f8e:	8d 2f       	mov	r24, r29
+ f90:	df 91       	pop	r29
+ f92:	cf 91       	pop	r28
+ f94:	1f 91       	pop	r17
+ f96:	0f 91       	pop	r16
+ f98:	ff 90       	pop	r15
+ f9a:	ef 90       	pop	r14
+ f9c:	df 90       	pop	r13
+ f9e:	cf 90       	pop	r12
+ fa0:	bf 90       	pop	r11
+ fa2:	af 90       	pop	r10
+ fa4:	08 95       	ret
+
+00000fa6 <_exit>:
+ fa6:	f8 94       	cli
+
+00000fa8 <__stop_program>:
+ fa8:	ff cf       	rjmp	.-2      	; 0xfa8 <__stop_program>
